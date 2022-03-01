@@ -1,5 +1,8 @@
+# -*- encoding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 {
-    'name' : 'Delivere_shipping',  #TaskID-123
+    'name' : 'Delivere_shipping', 
     'depends':["base","product","contacts","sale_management","sale","stock"],
     'description': """task id :2763103""",
     'data':[

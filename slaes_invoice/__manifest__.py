@@ -1,3 +1,6 @@
+# -*- encoding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 {
     'name' : 'Slaes_invoice',
     'description': """task id = 2763105""",
