@@ -1,7 +1,10 @@
-from odoo import models,api, fields
-    
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+from odoo import models,api
+
+
 class SaleOrderLine(models.Model):
-   
     _inherit = 'sale.order.line'
 
     @api.onchange('product_id')
@@ -16,6 +19,4 @@ class SaleOrderLine(models.Model):
                             data.product_uom = record.uom_id
                       
         return res
-
-
         

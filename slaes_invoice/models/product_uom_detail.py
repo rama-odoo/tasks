@@ -1,8 +1,10 @@
-from odoo import models, _, fields, api
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+from odoo import models,fields
 
 
 class ProductUomDetail(models.Model):
-
     _name = 'product.uom.detail'
 
     product_id = fields.Many2one('product.product')

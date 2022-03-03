@@ -15,7 +15,6 @@
                             <field name="product_id"/>
                             <field name="uom_id" domain="[('category_id','=',uom_category)]"/>
                             <field name="uom_category"/>
-                            <!-- <field name="available_uom_ids" invisible="1"/> -->
                         </tree>
                     </field>
                 </page>
