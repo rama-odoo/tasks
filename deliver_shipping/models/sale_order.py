@@ -17,8 +17,6 @@ class SaleOrder(models.Model):
             if record.appointment_date and record.partner_id.days_deliver > 0:
                 record.commitment_date = record.appointment_date - datetime.timedelta(days=record.partner_id.days_deliver)
 
-# action confirm button
-
     def action_confirm(self):
         print("\n confirm order in delivery")
         for record in self:

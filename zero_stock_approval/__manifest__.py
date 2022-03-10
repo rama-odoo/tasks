@@ -4,7 +4,7 @@
 {
     'name' : 'zero_stock_approval',
     'description':"""task id = 2763104""",
-    'depends':["base","product","contacts","sale_management","sale","stock","deliver_shipping"],
+    'depends':["base","product","contacts","deliver_shipping"],
     'data':[
         'views/sale_order_views.xml',
         'security/sale_order_security.xml'  

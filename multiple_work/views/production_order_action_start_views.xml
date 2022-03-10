@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="production_order_action_start" model="ir.actions.server">
+        <field name="name">Start time</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">for record in records:record.button_start()</field>
+    </record>
+
+    <record id="mrp_production_action_stop" model="ir.actions.server">
+        <field name="name">Stop time</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">for record in records:record.button_pending()</field>
+    </record>
+
+     <record id="mrp_production_action_done" model="ir.actions.server">
+        <field name="name">Done</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">for record in records:records.button_finish()</field>
+    </record>
+
+</odoo>
