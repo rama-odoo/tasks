@@ -2,13 +2,21 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name' :'project_task',
-    'description':"""task id = 2763106""",
-    'depends':['base','project'],
-    'data':[
+    'name': 'Project_work',
+    'summary': """
+        This module is project app the main task and sub-task and
+        We want that in sub task the main task .
+    """,
+    'description': """
+    Task id : 2763106
+        We want that in sub task the main task.
+     """,
+    'author': 'Odoo Ps',
+    'version': '1.0.0',
+    'depends': ['base', 'project'],
+    'data': [
         'views/project_task_view.xml'
     ],
-    'installable':True,
-    'application':True,
-    'license':'LGPL-3',
+    'installable': True,
+    'application': True,
 }

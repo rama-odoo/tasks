@@ -2,18 +2,19 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Mrp_production',
+    'name': 'purchase_report_custom',
     'summary': """
-        This module is show product_id in purchase order.
+        This module is show billing status in report for purchase order.
     """,
     'description': """
-         This module is show product_id in purchase order.
+        This module is show billing status in report for purchase order.
     """,
     'author': 'Odoo Ps',
     'version': '1.0.0',
-    'depends': ["mrp"],
+    'depends': ["purchase"],
+
     'data': [
-        'views/mrp_production_views.xml'
+        'report/purchase_order_form_report.xml'
     ],
     'installable': True,
     'application': True,

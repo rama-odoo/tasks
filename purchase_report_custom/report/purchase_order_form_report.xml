@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="purchase_inherit_template_purchase_order" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//div[@id='informations']/div[3]" position="after">
+            <!-- <th>
+                <b>Billing Status:</b>
+            </th> -->
+            <div t-if="o.invoice_status" class="col-3 bm-2">
+            <strong>Billing Status:</strong>
+            <p t-field="o.invoice_status" class="m-0"/>
+        </div>
+        </xpath>
+
+        
+    </template>
+</odoo>
