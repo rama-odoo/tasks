@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_order_inherit_template" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[hasclass('table','table-sm','o_main_table')]" position="before">
+            <strong>Enquiry Referens No:</strong>
+            <p t-field="doc.enquiry"/>
+
+            <div class="text-right">
+                <br>
+                    <strong>Thank You</strong>
+                </br>
+                <br>
+                    <strong>Your Faithfully</strong>
+                </br>
+                <br>
+                    <p class="m-0" t-field="doc.user_id"/>
+                </br>
+            </div>
+        </xpath>
+        <!-- This code is create a saleperson name ,email & phone number-->
+        <xpath expr="//div[@id='informations']/div[5]" position="inside">
+            <div t-field="doc.user_id" t-options='{"widget": "contact", "fields": ["email","phone"], "no_marker": True}' />
+        </xpath>
+
+        <!--This code is add invoicing and delivery address-->
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <!-- <p t-if="doc.partner_id.vat">-->
+            <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>
+ 
+:            <span t-field="doc.partner_id.vat"/>
+            <!-- </p> -->
+
+        </xpath>
+
+        <xpath expr="//div[@id='informations']/div[4]" position="replace">
+            <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto col-3 mw-100 mb-2" name="expiration_date">
+                <strong>Quotation Expiry Date :</strong>
+                <p class="m-0" t-field="doc.validity_date"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']/div[3]" position="replace">
+            <div>
+                <strong>Quotation Create Date :</strong>
+                <p class="m-0" t-field="doc.date_order"/>
+            </div>
+
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="after">
+            <div class="offset-8 text-center">
+                <strong>Special Remark if any :</strong>
+                <p t-field="doc.mark"/>
+
+            </div>
+        </xpath>
+
+        <xpath expr="//table[hasclass('table', 'table-sm' ,'o_main_table')]/thead/tr/th[@name='th_description']" position="before">
+            <div style="page-break-before: always;">
+                <th name="th_sr_no" class="text-left">Sr.No</th>
+                <th name="th_model_num" class="text-left">Model No</th>
+            </div>
+        </xpath>
+        <!-- <xpath expr="//table[hasclass('sale_tbody')]/t[1]]" position="after">
+            <td name="td_sr_no" class="text-right">
+                <span t-field="line.sr_no"/>
+            </td>
+        </xpath> -->
+    </template>
+</odoo>
