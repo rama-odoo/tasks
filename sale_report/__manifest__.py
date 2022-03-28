@@ -11,7 +11,7 @@
     """,
     'author': 'Odoo Ps',
     'version': '1.0.0',
-    'depends': ["sale_management","contacts","product"],
+    'depends': ["sale_management","contacts","product","terms_condition"],
 
     'data': [
         'views/sale_views.xml',

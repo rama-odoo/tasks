@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, _, models, api
+from odoo.exceptions import UserError, ValidationError
 import datetime
 
 
@@ -17,6 +18,7 @@ class SaleOrder(models.Model):
             if record.appointment_date and record.partner_id.days_deliver > 0:
                 record.commitment_date = record.appointment_date - datetime.timedelta(days=record.partner_id.days_deliver)
 
+    
     def action_confirm(self):
         print("\n confirm order in delivery")
         for record in self:
@@ -24,3 +26,9 @@ class SaleOrder(models.Model):
         for data in self.picking_ids:
             data.appointment_date = self.appointment_date
         return record
+
+         
+
+
+
+    

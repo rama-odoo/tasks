@@ -9,8 +9,10 @@
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="enquiry"/>
                 <field name="mark"/>
+                <field name="term_id"/>
+                <field name="general_id"/>
+                <field name="text_amount"/>
             </xpath>
-
              <xpath expr="//tree/field[@name='product_id']" position="before">
                 <field name="sr_no"/>
                 <field name="model_num"/>

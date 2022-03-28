@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="account_delivery_term_immediate" model="sale.order.delivery.terms">
+    <field name="name">Immediate Delivery</field>
+    <field name="note">Delivery terms: Immediate Delivery</field>
+</record>
+
+<record id="account_delivery_term_15days" model="sale.order.delivery.terms">
+    <field name="name">15 Days</field>
+    <field name="note">Delivery terms: 15 Days</field>
+</record>
+<record id="account_delivery_term_20days" model="sale.order.delivery.terms">
+    <field name="name">20 Days</field>
+    <field name="note">Delivery terms: 20 Days</field>
+</record>
+<record id="account_delivery_term_returnparcal" model="sale.order.delivery.terms">
+    <field name="name">Return parcal</field>
+    <field name="note">Delivery terms: Return parcal</field>
+</record>
+
+<!--sale order general terms and conditions -->
+<record id="account_delivery_term_immediate" model="sale.order.general.terms">
+    <field name="name">Gruleiche Rechte</field>
+    <field name="code">4520</field>
+    <field name="note">Genaral terms: KZ 4520 (Bilanzierer gemäß §§ 4 Abs. 1 oder 5)</field>
+</record>
+
+<record id="account_delivery_term_15days" model="sale.order.general.terms">
+    <field name="name">Betriebs- und</field>
+    <field name="code">0879</field>
+    <field name="note">Genaral terms:KZ 0879 (Bilanzierer gemäß §§ 4 Abs. 1 oder 5)</field>
+</record>
+<record id="account_delivery_term_20days" model="sale.order.general.terms">
+    <field name="name">Wohn- und </field>
+    <field name="code">2345</field>
+    <field name="note">Genaral terms: KZ 2345 (Bilanzierer gemäß §§ 4 Abs. 1 oder 5)</field>
+</record>
+<record id="account_delivery_term_returnparcal" model="sale.order.general.terms">
+    <field name="name">fremdem Grund</field>
+    <field name="code">9687</field>
+    <field name="note">Genaral terms: KZ 9687 (Bilanzierer gemäß §§ 4 Abs. 1 oder 5)</field>
+</record>
+</odoo>
