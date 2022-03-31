@@ -17,7 +17,7 @@
         "security/ir.model.access.csv",
         "views/res_partner_views.xml",
         "views/contract_price_details_views.xml",
-        "views/sale_order_line_view.xml"
+        # "views/sale_order_line_view.xml"
         
     ],
 }

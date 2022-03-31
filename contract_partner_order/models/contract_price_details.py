@@ -11,4 +11,6 @@ class ContractPriceDetails(models.Model):
     product_id = fields.Many2one('product.template')
     
 
+    
+
 

@@ -10,11 +10,12 @@
     'author': 'Odoo Ps',
     'version': '1.0.0',
 
-    'depends': ['website','hr_recruitment','contacts','sale_management'],
+    'depends': ['website','hr_recruitment','contacts','sale_management','stock'],
   
     'data' :[
         'views/res_config_settings_view_form.xml',
-        'views/view_company_inherit_form.xml'
+        'views/view_company_inherit_form.xml',
+        # 'views/view_order_inherit_form.xml'
     ],
     'installable': True,
     'application': True,
