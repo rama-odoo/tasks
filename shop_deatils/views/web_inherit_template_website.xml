@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_inherit_template_website_layout" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="before">
+            <span>
+                <t t-esc="product.qty_available"/>
+            </span>
+        </xpath>
+    </template>
+
+</odoo>

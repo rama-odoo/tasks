@@ -10,3 +10,5 @@ class ResCompany(models.Model):
 
     
     partner_id = fields.Many2one('res.partner', string='Partner')
+
+    
