@@ -13,10 +13,6 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def product_id_change(self):
         res = super().product_id_change()
-        print("\n\n\n value is print ****************", res)
         for contract in self:
             contract.order_id.partner_id.contract_ids.filtered(
                 lambda c: c.product_id == self.product_id and datetime.date.today() >= c.date_from and datetime.date.today() <= c.date_to)
-            print("\n value not is print///////////////", contract.product_id)
-
-    

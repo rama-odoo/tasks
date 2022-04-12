@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!--INHERIT  IT - POINT-OF-SALE -->
+
+    <record id="view_pos_inherit_form" model="ir.ui.view">
+        <field name="name">pos.order.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='session_id']" position="after">
+                <field name="zip" class="o_address_zip" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
+           

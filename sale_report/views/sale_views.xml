@@ -4,18 +4,18 @@
     <record id="view_order_form_inherit_sale_view" model="ir.ui.view">
         <field name="name">view.order.form.inherit.sale.view</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="enquiry"/>
-                <field name="mark"/>
-                <field name="term_id"/>
-                <field name="general_id"/>
-                <field name="text_amount"/>
+                <field name="enquiry" />
+                <field name="mark" />
+                <field name="term_id" />
+                <field name="general_id" />
+                <field name="text_amount" />
             </xpath>
-             <xpath expr="//tree/field[@name='product_id']" position="before">
-                <field name="sr_no"/>
-                <field name="model_num"/>
+            <xpath expr="//tree/field[@name='product_id']" position="before">
+                <field name="sr_no" />
+                <field name="model_num" />
             </xpath>
         </field>
     </record>

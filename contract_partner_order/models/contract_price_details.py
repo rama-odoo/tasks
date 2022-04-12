@@ -1,5 +1,6 @@
 
-from odoo import api, models, fields
+from odoo import models, fields
+
 
 class ContractPriceDetails(models.Model):
     _name = "contract.price.details"
@@ -9,8 +10,3 @@ class ContractPriceDetails(models.Model):
     date_to = fields.Date()
     price = fields.Float()
     product_id = fields.Many2one('product.template')
-    
-
-    
-
-

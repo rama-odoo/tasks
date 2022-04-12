@@ -11,4 +11,3 @@ class ResConfigSettings(models.TransientModel):
         super(ResConfigSettings, self).set_values()
         self.env['ir.config_parameter'].sudo().set_param(
             "costmer_recruitment.customer_id", self.customer_id.id)
-        print("\n\n\n\n value is find::::::::::::::;;")

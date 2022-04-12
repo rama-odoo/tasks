@@ -4,6 +4,7 @@
     <!--INHERIT  IT - contact-->
 
     <!--Approval and confirm button -->
+    
     <record id="view_partner_form_customer_credit" model="ir.ui.view">
         <field name="name">view.partner.form.customer.credit</field>
         <field name="model">res.partner</field>
