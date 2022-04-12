@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<record model="ir.actions.act_window" id="sale_order_delivery_terms_views_action">
-    <field name="name">Delivery Terms</field>
-    <field name="view_id" ref="sale_order_delivery_terms_views_tree"/>
-    <field name="res_model">sale.order.delivery.terms</field>
-    <field name="view_mode">tree,form</field>
-</record>
+    <record model="ir.actions.act_window" id="sale_order_delivery_terms_views_action">
+        <field name="name">Delivery Terms</field>
+        <field name="view_id" ref="sale_order_delivery_terms_views_tree" />
+        <field name="res_model">sale.order.delivery.terms</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
 
-<record model="ir.actions.act_window" id="sale_order_general_terms_views_action">
-    <field name="name">General Terms</field>
-    <field name="view_id" ref="sale_order_delivery_terms_views_tree"/>
-    <field name="res_model">sale.order.general.terms</field>
-    <field name="view_mode">tree,form</field>
-</record>
+    <record model="ir.actions.act_window" id="sale_order_general_terms_views_action">
+        <field name="name">General Terms</field>
+        <field name="view_id" ref="sale_order_delivery_terms_views_tree" />
+        <field name="res_model">sale.order.general.terms</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
-<menuitem id="sale_order_delivery_terms_menu_root" name="Terms conditions">
-    <menuitem id="sale_order_delivery_terms_conditions" name="Delivery terms">
-        <menuitem id="sale_order_delivery_terms_menu_action" action="sale_order_delivery_terms_views_action"/>
+    <menuitem id="sale_order_delivery_terms_menu_root" name="Terms conditions">
+        <menuitem id="sale_order_delivery_terms_conditions" name="Delivery terms">
+            <menuitem id="sale_order_delivery_terms_menu_action" action="sale_order_delivery_terms_views_action" />
+        </menuitem>
     </menuitem>
-</menuitem>
 
-<menuitem id="sale_order_general_terms_menu_conditions" parent="sale_order_delivery_terms_menu_root" name="General terms">
-    <menuitem id="sale_order_general_terms_menu_action" action="sale_order_general_terms_views_action"/>
-</menuitem>
+    <menuitem id="sale_order_general_terms_menu_conditions" parent="sale_order_delivery_terms_menu_root" name="General terms">
+        <menuitem id="sale_order_general_terms_menu_action" action="sale_order_general_terms_views_action" />
+    </menuitem>
 </odoo>

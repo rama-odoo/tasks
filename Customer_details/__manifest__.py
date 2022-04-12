@@ -5,7 +5,7 @@
     """,
 
     'description': """
-       zip show in form 
+       zip field show in form and website user create bill then show data in form
     """,
     'author': 'Odoo Ps',
     'version': '1.0.0',

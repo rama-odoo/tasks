@@ -11,13 +11,13 @@
     """,
     'author': 'Odoo Ps',
     'version': '1.0.0',
-    'depends': ["sale_management","contacts","product","terms_condition"],
+    'depends': ["sale_management", "contacts", "product", "terms_condition"],
 
     'data': [
         'views/sale_views.xml',
         'report/report_template.xml',
         'report/sale_report_templates.xml',
-        
+
     ],
     'installable': True,
     'application': True,

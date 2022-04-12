@@ -18,10 +18,12 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
-       
-        product_ids = self.order_id.selected_order_id.order_line.mapped("product_id").ids
 
-        print("\n\n\n value?////////////////??",product_ids,self.order_id.selected_order_id.id)
+        product_ids = self.order_id.selected_order_id.order_line.mapped(
+            "product_id").ids
+
+        print("\n\n\n value::::", product_ids,
+              self.order_id.selected_order_id.id)
         return {
             'domain': {
                 'product_id': [

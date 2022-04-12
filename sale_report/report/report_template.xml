@@ -3,18 +3,11 @@
     <!-- Header layout inherit add GST-->
     <template id="web_view_inherit_template" inherit_id="web.external_layout_striped">
         <xpath expr="//div[hasclass('o_background_header')]" position="inside">
-                <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>
-:                <span t-field="doc.partner_id.vat"/>
+            <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'" />
+            :
+            <span t-field="doc.partner_id.vat" />
         </xpath>
-
-        <!-- <xpath expr="//div[hasclass('text-center')]" position="inside">
-
-        </xpath> -->
     </template>
-    <!-- <template id="web_view_inherit_template" inherit_id="report.paperformat">
-        <xpath expr="//div[hasclass('company_details')]" position="inside">
-        </xpath>
-    </template> -->
 
 </odoo>
     
