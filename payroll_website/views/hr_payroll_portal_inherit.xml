@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="hr_payroll_portal_inherit" name="My Hr Payroll">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Pay Slip</t>
+            </t>
+            <t t-if="not payslip">
+                <p>There are currently no payslips in your account.</p>
+            </t>
+
+            <t t-if="payslip" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>Pay Slip</span>
+                            <span class='d-block d-md-none'>Ref.</span>
+                        </th>
+                        <th class="text-align">Employee</th>
+                        <th class="text-center">Net Wage</th>
+                        <th class="text-left">Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="payslip" t-as="p">
+                    <tr>
+                        <td>
+                            <a t-att-href="'/my/payslips/%s'%p.id">
+                                <t t-esc="p.number" />
+                            </a>
+                        </td>
+                        <td class="text-align">
+                            <span t-field="p.employee_id.name" />
+                            &amp;nbsp;
+                            <span class='d-none d-md-inline' t-field="p.employee_id.name" />
+                        </td>
+                        <td class="text-center">
+                            <span t-field="p.net_wage" />
+                            &amp;nbsp;
+                        </td>
+                        <td class="text-left">
+                            <span t-if="p.state == 'done'" class="badge badge-pill badge-success">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Paid" />
+                                Paid
+                            </span>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_hr_payslip" name="Portal layout : employment payslip menu entries" inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'slip'" t-attf-class="breadcrumb-item #{'active ' if payslip else ''}">
+                <span>Payslip</span>
+            </li>
+
+            <li t-if="page_name == 'slips'" t-attf-class="breadcrumb-item #{'active ' if not payslip else ''}">
+                <a t-if="payslip" t-attf-href="/my/payslips?{{ keep_query() }}">Payslip</a>
+                <t t-else="">Payslip</t>
+            </li>
+            <li t-if="payslip and page_name == 'slips'" class="breadcrumb-item active">
+                <a t-foreach="payslip" t-as="payslip" />
+                <li>
+                    <em t-esc="payslip.name" />
+                </li>
+            </li>
+        </xpath>
+    </template>
+</odoo>
