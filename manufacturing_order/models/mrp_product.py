@@ -1,6 +1,4 @@
-from odoo import models
-
-
+from odoo import models, _
 class MrpProduction(models.Model):
 
     _inherit = "mrp.production"

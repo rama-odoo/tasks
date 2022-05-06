@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_inherit_template_website_layout" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="after">
+            <t t-if="product.courses_id">
+                <div>
+                    <h2>Course:-</h2>
+                    <h3>
+                        <t t-esc="product.courses_id.name" />
+                    </h3>
+                    <h4>Titles:-</h4>
+                    <b>
+                        <t t-foreach="product.courses_id.slide_ids" t-as="p">
+                            <t t-esc="p.name" />
+                            <br />
+                        </t>
+                    </b>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

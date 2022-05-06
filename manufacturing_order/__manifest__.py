@@ -7,7 +7,7 @@
     'author': 'Odoo Ps',
     'version': '1.0.0',
 
-    'depends': ['mrp'],
+    'depends': ['mrp','sale_management','stock'],
     'data': [
         'views/mrp_production_tree_view.xml',
     ],
