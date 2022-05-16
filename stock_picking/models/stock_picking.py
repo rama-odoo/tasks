@@ -15,7 +15,6 @@ class StockMoveLine(models.Model):
 
     def _assign_production_lot(self, lot):
         res = super(StockMoveLine, self)._assign_production_lot(lot)
-
         lot.lot_secound_name = self.lot_secound_name
         return res
 
