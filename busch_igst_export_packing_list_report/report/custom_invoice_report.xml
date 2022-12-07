@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_report">
+        <t t-call="busch_igst_export_packing_list_report.custom_external_layout">
+            <table border="0">
+                <tr><td>IRN no :</td></tr>
+                <tr><td>Ack No:</td><td>Ack. Date:</td></tr>
+            </table>
+        <style>
+            .table, th, td, tr{
+            border: 1px solid black;
+            padding : 5px;
+            font-size: 13px;
+            }
+            .div,span{
+            font-size: 13px;
+            }
+        </style>
+
+        <table class="table">
+            <t t-set="l10n_in_einvoice_json" t-value="o._get_l10n_in_edi_response_json()"/>
+            <div class="p-2">
+                <div t-if="l10n_in_einvoice_json" name="irn">
+                    <strong>IRN no:</strong>
+                    <p class="p-2" t-esc="l10n_in_einvoice_json['Irn']"/>
+                </div>
+            </div>
+            <div class="p-2">
+                <div t-if="l10n_in_einvoice_json" name="ack_no">
+                    <strong>Ack. No:</strong>
+                    <p class="p-2" t-esc="l10n_in_einvoice_json['AckNo']"/>
+                </div>
+                <div t-if="l10n_in_einvoice_json" name="ack_date">
+                    <strong>Ack. Date:</strong>
+                    <p class="p-2" t-esc="l10n_in_einvoice_json['AckDt']"/>
+                </div>
+<!--                <div>-->
+<!--                    <p t-if="l10n_in_einvoice_json">-->
+<!--                        <strong class="text-center">Scan me with E-invoice app.</strong>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' %('QR', l10n_in_einvoice_json['SignedQRCode'], 200, 200)"/>-->
+<!--                    </p>-->
+<!--                </div>-->
+            </div>
+            <tr>
+              <td colspan="2">
+                    <div>Consignee </div>
+                    <div class="font-weight-bold"><span t-field="o.partner_shipping_id.name"/></div>
+                    <div t-field="o.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address","phone"], "no_marker": true, "no_tag_br": True}'/>
+                    <div>
+                        <div class="flot-left">
+                            <p t-if="l10n_in_einvoice_json">
+                                <strong class="text-center">Scan me with E-invoice app.</strong>
+                                <br/>
+                                <br/>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' %('QR', l10n_in_einvoice_json['SignedQRCode'], 200, 200)"/>
+                            </p>
+                        </div>
+                </div>
+              </td>
+                <td colspan="2">
+                    <div>Buyer (if other than Consignee)</div>
+                    <div class="font-weight-bold"><span t-field="o.partner_id.name"/></div>
+                    <div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address","phone"], "no_marker": true, "no_tag_br": True}'/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>Invoice No.</div>
+                    <div class="font-weight-bold"><span t-field="o.name"/></div>
+                </td>
+                <td>
+                    <div>Date</div>
+                    <div class="font-weight-bold"><span t-field="o.invoice_date"/></div>
+                </td>
+                <td>
+                    <div>Country of Origin of Goods</div>
+                    <div class="font-weight-bold"><span t-field="res_company.country_id"/></div>
+                </td>
+                <td>
+                    <div>Country of Final Destination</div>
+                    <div class="font-weight-bold"><span t-field="o.partner_shipping_id.country_id"/></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  Buyer's Order No.
+                  <div class="font-weight-bold"><span t-field="o.ref"/></div>
+                </td>
+                <td>
+                  Sale Order No.
+<!--                  <div class="font-weight-bold"><span t-field="o.x_studio_packing_list_no.sale_id.name"/></div>-->
+                </td>
+                <td>
+                  Packing List No.
+<!--                  <div class="font-weight-bold"><span t-field="o.x_studio_packing_list_no"/></div>-->
+                </td>
+                <td>
+                    Mode of Dispatch:
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_packing_list_no.sale_id.x_studio_mode_of_dispatch"/></div>-->
+                </td>
+            </tr>
+            <tr>
+<!--                <td>-->
+<!--                    <div>Pre-carriage by</div>-->
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_pre_carriage_by"/></div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div>Place of receipt by pre carrier</div>-->
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_place_of_receipt_by_pre_carrier"/></div>-->
+<!--                </td>-->
+                <td>
+                    Term of Delivery:
+                    <div class="font-weight-bold"><span t-field="o.invoice_incoterm_id"/></div>
+                </td>
+                <td>
+                  Terms of Payment:
+                  <div class="font-weight-bold"><span t-field="o.invoice_payment_term_id"/></div>
+                </td>
+            </tr>
+            <tr>
+<!--                <td>-->
+<!--                    <div>Vessel/Flight No</div>-->
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_vesselflight_no"/></div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div>Port of Loading</div>-->
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_port_of_loading"/></div>-->
+<!--                </td>-->
+                <td>
+                    <div>Shipper Contact Person:</div>
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_packing_list_no.sale_id.user_id"/></div>-->
+                </td>
+                <td>
+                    <div>Shipper Email Id:</div>
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_packing_list_no.sale_id.user_id.email"/></div>-->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>Port of Discharge</div>
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_port_of_discharge"/></div>-->
+                </td>
+                <td>
+                    <div>Final Destination</div>
+<!--                    <div class="font-weight-bold"><span t-field="o.x_studio_final_destination"/></div>-->
+                </td>
+                <td>
+                    <div>Customer Contact Person:</div>
+                    <div class="font-weight-bold"><span t-field="o.partner_id.name"/></div>
+                </td>
+                <td>
+                    <div>Customer Email Id:</div>
+                    <div class="font-weight-bold"><span t-field="o.partner_id.email"/></div>
+                </td>
+            </tr>
+        </table>
+        <table class="mt-3 table">
+            <thead>
+                <tr>                
+                    <th name="th_slno" width="5%">Sl No.</th>
+                    <th name="th_part_no">Part No</th>
+                    <th name="th_description" width="30%">Description</th>
+                    <th name="th_quantity">Qty
+                        <div>(Nos)</div>
+                    </th>
+                    <th name="th_lot_no">Lot No</th>
+                    <th name="th_price_unit">Unit Price
+                        <div t-if="is_commercial_report">(<span t-field="o.currency_id"/>)</div>
+                        <div t-if="is_tax_report">(INR)</div>
+                    </th>
+                    <t t-if="is_tax_report">
+                        <th name="th_taxes">
+                            Tax Amount
+                            <div>(%)</div>
+                        </th>
+                    </t>
+                    <th name="th_amount">Line Total
+                        <div t-if="is_commercial_report">(<span t-field="o.currency_id"/>)</div>
+                        <div t-if="is_tax_report">(INR)</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-set="sl_no" t-value="0"/>
+                <t t-set="total_quantity" t-value="0"/>
+                <t t-set="price_subtotal" t-value="0"/>
+                <t t-set="exchange_rate" t-value="request.env['res.currency'].search([])._get_conversion_rate(o.currency_id, o.company_id.currency_id, o.company_id, o.invoice_date or datetime.date.today())"/>
+                <t t-foreach="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)" t-as="line">
+                    <t t-set="total_quantity" t-value="total_quantity + line.quantity"/>
+                    <t t-set="price_subtotal" t-value="price_subtotal + line.price_subtotal"/>
+                    <tr>
+                        <td name="td_slno">
+                            <t t-set="sl_no" t-value="sl_no + 1"/>
+                            <span t-esc="sl_no"/>
+                        </td>
+                        <td name="td_part_no">
+                            <span t-field="line.product_id.default_code"/>
+                        </td>
+                        <td name="td_description" width="30%">
+                            <div><span t-field="line.name"/></div>
+                            <div t-if="line.product_id.l10n_in_hsn_code">HSN Code : <span t-field="line.product_id.l10n_in_hsn_code"/></div>
+                        </td>
+                        <td name="td_quantity">
+                            <t t-if="line.product_id.x_display_qty == True or line.product_id.type != 'service'"><span t-field="line.quantity"/></t>
+                        </td>
+<!--                        <td name="td_lot_no" width="30%">-->
+<!--                            <t t-set="related_move_line" t-value="o.x_studio_packing_list_no.move_line_ids_without_package.filtered(lambda l: l.product_id == line.product_id and l.move_id.sale_line_id in line.sale_line_ids)"/>-->
+<!--                            <span style="font-size: 10px !important;" t-esc="', '.join(related_move_line.mapped('lot_id').mapped('name'))"/>-->
+<!--                        </td>-->
+                        <td name="td_price_unit">
+                            <span t-if="is_tax_report" t-esc="exchange_rate * line.price_unit" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}"/>
+                            <span t-if="is_commercial_report" t-field="line.price_unit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                        </td>
+                        <t t-if="is_tax_report">
+                          <t t-set="tax_amount" t-value="line.price_total - line.price_subtotal"/>
+                          <td>
+                              <div t-if="line.tax_ids"><span t-esc="exchange_rate * tax_amount" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}"/></div>
+                              <div>(<span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))"/>)</div>
+                          </td>
+                        </t>
+                        <td name="td_total">
+                          <t t-if="is_tax_report">
+                            <span t-esc="exchange_rate * line.price_subtotal" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}" groups="account.group_show_line_subtotals_tax_excluded"/>
+                            <span t-esc="exchange_rate * line.price_total" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}" groups="account.group_show_line_subtotals_tax_included"/>
+                          </t>
+                          <t t-if="is_commercial_report"><span t-field="line.price_subtotal" t-options="{'widget' :'monetary', 'display_currency' : o.currency_id}" groups="account.group_show_line_subtotals_tax_excluded"/></t>
+                        </td>
+                    </tr>
+                </t>  
+                <tr>
+                    <td colspan="3"></td>
+                    <td><span t-esc="total_quantity"/></td>
+                    <td/>
+                    <t t-if="is_tax_report">
+                        <td/>
+                    </t>
+                    <td></td>
+                    <td>
+                      <t t-if="is_tax_report"><span t-esc="exchange_rate * price_subtotal" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}"/></t>
+                      <t t-if="is_commercial_report"><span t-esc="price_subtotal" t-options="{'widget' :'monetary', 'display_currency' : o.currency_id}"/></t>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt-2">
+          Amount in words: 
+          <t t-if="is_tax_report"><strong><span t-esc="o.company_id.currency_id.amount_to_text(exchange_rate * o.amount_total)"/></strong></t>
+          <t t-if="is_commercial_report"><strong><span t-esc="o.currency_id.amount_to_text(price_subtotal)"/></strong></t>
+        </div>
+        <div t-if="is_tax_report" class="clearfix mt-2">
+            <div class="clearfix mt-2">
+                <div id="total" class="row">
+                    <div t-attf-class="#{'col-5' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                        <table class="table table-sm;page-break-inside: avoid;">
+                            <tr class="border-black o_subtotal" style="">
+                                <td>Subtotal</td>
+                                <td class="text-right">
+                                    <span t-esc="exchange_rate * o.amount_untaxed" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td>Taxes</td>
+                              <td class="text-right">
+                                <span t-esc="exchange_rate * o.amount_tax" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}"/>
+                              </td>
+                            </tr>
+                            <tr class="border-black o_total">
+                                <td>Total</td>
+                                <td class="text-right font-weight-bold">
+                                    <span t-esc="exchange_rate * o.amount_total" t-options="{'widget' :'monetary', 'display_currency' : o.company_id.currency_id}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2 font-weight-bold"><u>Shipping Marks:</u></div>
+        <div>
+<!--          <t t-if="o.x_studio_lut_no">Lut No.:<span t-field="o.x_studio_lut_no"/></t> &amp;nbsp;-->
+<!--          <t t-if="o.x_studio_lut_date">Lut Date:<span t-field="o.x_studio_lut_date"/></t>-->
+        </div>
+        <center t-if="o.narration"><div class="text-left border border-dark" style="width:70%;padding:15px;page-break-inside: avoid;"><span t-field="o.narration"/></div></center>
+        <table class="table mt-3" style="page-break-inside: avoid;">
+            <tr>
+                <td width="70%">
+                    <u>Declaration</u>
+                    <div>1. This is computer generated invoice no signature required</div>
+                    <div>2. We certify that Packing is Export Standard Road Worthy Packing.</div>
+                    <div>3. We declare that this invoice shows actual price of goods described And that all particular are true and correct.</div>
+                </td>
+                <td class="font-weight-bold">FOR <span t-field="res_company.name"/><div class="mt-5">Authorised Signatory</div></td>
+            </tr>
+        </table>
+    </t>
+    </template>
+
+    <template id="tax_invoice">
+        <t t-call="web.html_container">
+            <t t-set="is_tax_report" t-value="True"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="busch_igst_export_packing_list_report.custom_report"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="commercial_invoice">
+        <t t-call="web.html_container">
+            <t t-set="is_commercial_report" t-value="True"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="busch_igst_export_packing_list_report.custom_report"/>
+            </t>
+        </t>
+    </template>
+</odoo>

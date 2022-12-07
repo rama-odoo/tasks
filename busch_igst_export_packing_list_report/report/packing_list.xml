@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="packing_list">
+        <t t-call="busch_igst_export_packing_list_report.custom_external_layout">  
+            <style>
+                .table, th, td, tr{
+                    border: 1px solid black;
+                    padding : 0.25rem !important;
+                }
+            </style>
+            <table style="table-layout:fixed;width:100%">
+                <tr>
+                    <td colspan="2">
+                        <div>Consignee </div>
+                        <div><strong t-field="o.sale_id.partner_shipping_id.name"/></div>
+                        <div t-field="o.sale_id.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address","phone"], "no_marker": true, "no_tag_br": True}'/>
+                    </td>
+                    <td colspan="2">
+                        <div>Buyer (if other than Consignee)</div>
+                        <div><strong t-field="o.sale_id.partner_id.name"/></div>
+                        <div t-field="o.sale_id.partner_id" t-options='{"widget": "contact", "fields": ["address","phone"], "no_marker": true, "no_tag_br": True}'/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Packing List No.</div>
+                        <div><strong t-field="o.name"/></div>
+                    </td>
+                    <td>
+                        <div>Date</div>
+                        <div><strong t-field="o.date_done"/></div>
+                    </td>
+                    <td>
+                        <div>Country of Origin of Goods</div>
+                        <div class="font-weight-bold"><span t-field="res_company.country_id"/></div>
+                    </td>
+                    <td>
+                        <div class="text-nowrap">Country of Final Destination</div>
+                        <div><strong t-field="o.sale_id.partner_shipping_id.country_id"/></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Sale Order No.</div>
+                        <div><strong t-field="o.sale_id.name"/></div>
+                    </td>
+                    <td>
+                        <div>Customer Order No.</div>
+                        <div><strong t-field="o.sale_id.client_order_ref"/></div>
+                    </td>
+                    <td>
+                        <div>Term of Delivery:</div>
+                        <div><strong t-field="o.sale_id.incoterm.name"/></div>
+                    </td>
+                    <td>
+                        <div>Mode of Dispatch:</div>
+                        <div><strong t-field="o.sale_id.x_studio_mode_of_dispatch"/></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Pre-carriage by</div>
+                        <div><strong t-field="o.x_studio_pre_carriage_by"/></div>
+                    </td>
+                    <td>
+                        <div>Place of receipt by pre carrier</div>
+                        <div><strong t-field="o.x_studio_place_of_receipt_by_pre_carrier_1"/></div>
+                    </td>
+                    <td>
+                        <div>Terms of Payment:</div>
+                        <div><strong t-field="o.sale_id.payment_term_id.name"/></div>
+                    </td>
+                    <td>
+                        <div>Type of Packing:</div>
+                        <div><strong t-field="o.x_studio_type_of_packing"/></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Vessel/Flight No</div>
+                        <div><strong t-field="o.x_studio_vesselflight_no_1"/></div>
+                    </td>
+                    <td>
+                        <div>Port of Loading</div>
+                        <div><strong t-field="o.x_studio_port_of_loading"/></div>
+                    </td>
+                    <td>
+                        <div>Shipper Contact Person:</div>
+                        <div><strong t-field="o.sale_id.user_id"/></div>
+                    </td>
+                    <td>
+                        <div>Shipper Email Id:</div>
+                        <div><strong t-field="o.sale_id.user_id.email"/></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Port of Discharge</div>
+                        <div><strong t-field="o.x_studio_port_of_discharge"/></div>
+                    </td>
+                    <td>
+                        <div>Final Destination</div>
+                        <div><strong t-field="o.x_studio_final_destination"/></div>
+                    </td>
+                    <td>
+                        <div>Customer Contact Person:</div>
+                        <div><strong t-field="o.partner_id.name"/></div>
+                    </td>
+                    <td>
+                        <div>Customer Email Id:</div>
+                        <div><strong t-field="o.partner_id.email"/></div>
+                    </td>
+                </tr>
+            </table>
+            <table class="mt-4" style="table-layout:fixed;width:100%">
+                <t t-set="package_ids" t-value="o.move_line_ids_without_package.mapped('result_package_id')"/>
+                
+                <t t-foreach="package_ids" t-as="package_id">
+                    <t t-set="package_moves" t-value="o.move_line_ids_without_package.filtered(lambda l: l.result_package_id == package_id)"/>
+                    <tr>
+                        <th>
+                            <div>Package:</div>
+                            <div t-esc="package_id.name"/>
+                        </th>
+                        <th colspan="5">
+                            <div>Dimensions:</div>
+                            <div t-esc="package_id.packaging_id.name"/>
+                        </th>
+                        <th>
+                            <t t-set="products_weight" t-value="sum([l.product_id.weight for l in package_moves if l.product_id and l.product_id.weight])"/>
+                            <div>Gross Weight:</div>
+                            <div><span t-esc="products_weight + package_id.shipping_weight" t-options="{'widget': 'float', 'precision': 2}"/></div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Sl No.</th>
+                        <th>Part No</th>
+                        <th colspan="2">Description</th>
+                        <th>Qty</th>
+                        <th>Lot/Serial No</th>
+                        <th>Net Weight</th>
+                    </tr>
+                    
+                    <tr t-foreach="package_moves" t-as="l">
+                        <td name="td_slno">
+                            <span t-esc="l_index + 1"/>
+                        </td>
+                        <td><span t-field="l.product_id.default_code"/></td>
+                        <td colspan="2">
+                            <div><span t-field="l.product_id.name"/></div>
+                            <div t-if="l.product_id.l10n_in_hsn_code">HSN Code : <span t-field="l.product_id.l10n_in_hsn_code"/></div>
+                        </td>
+                        <td><span t-field="l.qty_done"/></td>
+                        <td><span t-field="l.lot_id"/></td>
+                        <td><span t-field="l.product_id.weight"/></td>
+                    </tr>
+                </t>
+            </table>
+            <div class="mt-2 font-weight-bold">Summary of Packages :</div>
+            <table class="table mt-4">
+                <t t-set="total_net_weight" t-value="0"/>
+                <t t-set="total_gross_weight" t-value="0"/>
+                <tr>
+                    <th class="border border-dark">Package</th>
+                    <th class="border border-dark">No of Packages</th>
+                    <th class="border border-dark">Net Weight</th>
+                    <th class="border border-dark">Gross Weight</th>
+                    <th class="border border-dark">Dimensions</th>
+                </tr>
+                <tr t-foreach="package_ids" t-as="package_id">
+                    <t t-set="package_moves" t-value="o.move_line_ids_without_package.filtered(lambda l: l.result_package_id == package_id)"/>
+                    <t t-set="products_weight" t-value="sum([l.product_id.weight for l in package_moves if l.product_id and l.product_id.weight])"/>
+                    <t t-set="gross_weight" t-value="products_weight + package_id.shipping_weight"/>
+                    <t t-set="total_net_weight" t-value="total_net_weight + products_weight"/>
+                    <t t-set="total_gross_weight" t-value="total_gross_weight + gross_weight"/>
+
+                    <td><span t-esc="package_id.name"/></td>
+                    <td>1</td>
+                    <td>
+                        <span t-esc="products_weight" t-options="{'widget': 'float', 'precision': 2}"/>
+                    </td>
+                    <td>
+                        <span t-esc="gross_weight" t-options="{'widget': 'float', 'precision': 2}"/>
+                    </td>
+                    <td><span t-esc="package_id.packaging_id.name"/></td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><span t-esc="len(package_ids)" t-options="{'widget': 'integer'}"/></td>
+                    <td><span t-esc="total_net_weight" t-options="{'widget': 'float', 'precision': 2}"/></td>
+                    <td><span t-esc="total_gross_weight" t-options="{'widget': 'float', 'precision': 2}"/></td>
+                    <td></td>
+                </tr>
+            </table>
+            <center t-if="o.note"  class="mt-4" style="page-break-inside: avoid;"><div class="text-left border border-dark" style="width:70%;padding:15px;"><span t-field="o.note"/></div></center>
+            <table class="mt-3" style="page-break-inside: avoid;width:100%">
+                <tr class="text-right">
+                    <td class="font-weight-bold">
+                        FOR, <span t-field="res_company.name"/>
+                        <div class="mt-5">Authorised Signatory</div>
+                    </td>
+                </tr>
+            </table>        
+        </t>
+    </template>
+    <template id="packing_list_report">
+        <t t-call="web.html_container">
+            <t t-set="is_packing_list" t-value="True"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="busch_igst_export_packing_list_report.packing_list"/>
+            </t>
+        </t>
+    </template>
+</odoo>

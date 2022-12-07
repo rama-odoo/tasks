@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="customer_barcode_package_report_inherit_rama" inherit_id="stock.report_package_barcode">
+            <xpath expr="//t/div[hasclass('page')]" position="replace">
+                <div class="oe_structure"/>
+                <div style="page-break-inside: avoid;">
+                    <table class="table mt-4">
+                        <tr>
+                            <th>
+                                <h1 t-field="o.name" class="float-left"/>
+                            </th>
+                            <th name="td_pk_barcode" style="text-align: center">
+                                <div t-field="o.name"
+                                     t-options="{'widget': 'barcode', 'width': 600, 'height': 100, 'img_style': 'width:300px;height:50px;'}"/>
+                                <p t-field="o.name"/>
+                            </th>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div t-if="o.package_type_id" class="col-auto">
+                            <strong>Package Type:</strong>
+                            <span t-field="o.package_type_id.name"/>
+                        </div>
+                        <t t-set="picking"
+                           t-value="env['stock.move.line'].search(['|', ('result_package_id', 'in',o.ids), ('package_id', 'in',o.ids)]).mapped('picking_id')"/>
+                        <div class="col-auto">
+                            <strong>Customer Name :</strong>
+                            <span t-field="picking.partner_id"/>
+                        </div>
+                        <div class="col-auto">
+                            <strong>Date :</strong>
+                            <span t-field="picking.date_done"/>
+                        </div>
+                    </div>
+                    <table class="table table-sm" style="border-bottom: 0px solid white !important;">
+                        <t t-set="has_serial_number" t-value="o.quant_ids.mapped('lot_id')"/>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th name="th_sale_order_no">SO Number</th>
+                                <th name="th_customer_po_no">Customer PO Number</th>
+                                <th name="th_quantity" class="text-right">Quantity</th>
+                                <th name="th_uom" groups="uom.group_uom"/>
+                                <th name="th_serial" class="text-right" t-if="has_serial_number">Lot/Serial Number</th>
+                            </tr>
+                        </thead>
+                        <tbody class="mb-5">
+                            <tr t-foreach="o.quant_ids" t-as="l">
+                                <td>
+                                    <span t-field="l.product_id.name"/>
+                                </td>
+                                <t t-set="picking"
+                                   t-value="env['stock.move.line'].search(['|', ('result_package_id', 'in',o.ids), ('package_id', 'in',o.ids)]).mapped('picking_id')"/>
+                                <td class="text-left" t-esc="picking.sale_id.name"/>
+                                <td t-esc="picking.sale_id.x_studio_client_po"/>
+                                <td class="text-right">
+                                    <span t-field="l.quantity"/>
+                                </td>
+                                <td groups="uom.group_uom">
+                                    <span t-field="l.product_id.uom_id.name"/>
+                                </td>
+                                <td class="text-right" t-if="has_serial_number">
+                                    <t t-if="l.lot_id">
+                                        <span t-field="l.lot_id.name"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="border-top: 1px solid ;border-style: dashed;border-width: 1px;"/>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

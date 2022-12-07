@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_lead_inherit_form_view" model="ir.ui.view">
+        <field name="name">crm.lead.inherit.form.view</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='team_id']" position="after">
+                <field name="x_is_important"/>
+            </xpath>
+            <xpath expr="//widget[@name='web_ribbon']" position="after">
+                <div class="ribbon ribbon-top-right"
+                     attrs="{'invisible': [('x_is_important', '=', False)]}">
+                    <span class="bg-info">Important</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_search_opportunity_inherit_view" model="ir.ui.view">
+        <field name="name">crm.lead.search.opportunity.inherit.view</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='open_opportunities']" position="after">
+                <filter name="x_is_important" string="Important" domain="[('x_is_important', '=', True),]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_kanban_lead_inherit_view" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.lead.inherit.view</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+             <xpath expr="//kanban/templates/t//div[hasclass('o_kanban_record_subtitle')]" position="inside">
+                <div>
+                    <field name="x_is_important" title="Important" widget="boolean_toggle"/>
+                </div>
+            </xpath>
+            <xpath expr="//templates//t[@t-name='kanban-box']//div[hasclass('o_dropdown_kanban','dropdown')]" position="before">
+                <div class="ribbon ribbon-top-right" attrs="{'invisible': [('x_is_important', '=', False)]}">
+                    <span class="bg-info">Important</span>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

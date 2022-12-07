@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="shipping_label_report">
+        <t t-call="busch_igst_export_packing_list_report.custom_external_layout">
+            <style>
+                .table, th, td, tr{
+                border: 1px solid black;
+                padding : 0.25rem !important;
+                }
+            </style>
+
+            <div class="page">  
+                <t t-set="package_ids" t-value="o.move_line_ids_without_package.mapped('result_package_id')"/>
+
+                <t t-foreach="package_ids" t-as="package_id">
+
+                    <div class="information">
+                        <div class="row text-nowrap">
+                            <div class="col-4">
+                                <h5>To, <strong t-field="o.partner_id.country_id"/></h5>
+                            </div>
+                            <div class="col-4">
+                                <h4><strong t-field="o.x_studio_box_description"/></h4>
+                            </div>
+                            <div class="col-4 text-right">
+                                <h5><strong>Date: </strong><span t-field="o.date_done" t-options="{'widget': 'date'}"/></h5>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <strong>
+                                    Ship To,
+                                    <div t-field="o.partner_id"/>
+                                </strong>
+                                <div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                            </div>
+                            <div class="col-6">
+                                <strong>
+                                    Ship From,
+                                    <div t-field="o.company_id.partner_id"/>
+                                </strong>
+                                <div t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <strong>Sale Order No : </strong><span t-field="o.sale_id.name"/>
+                                <div><img alt="barcode" t-if="o.sale_id.name" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.sale_id.name, 900, 200)" style="max-height:50pt;max-width:55%;"/></div>
+                            </div>
+                            <div class="col-6">
+                                <strong>Customer Po No : </strong><span t-field="o.sale_id.client_order_ref"/>
+                                <div><img alt="barcode" t-if="o.sale_id.client_order_ref" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.sale_id.client_order_ref, 900, 200)" style="max-height:50pt;max-width:55%;"/></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <t t-set="package_moves" t-value="o.move_line_ids_without_package.filtered(lambda l: l.result_package_id == package_id)"/>
+                    <table class="mt-4 mb-0" style="table-layout:fixed;width:100%">
+                      <t t-set="products_weight" t-value="sum([l.product_id.weight for l in package_moves if l.product_id and l.product_id.weight])"/>
+                      <th>
+                          <div class="row font-weight-bold">
+                            <div class="col-4">
+                              Package
+                              <div t-esc="package_id.name"/>
+                            </div>
+                            <div class="col-4 text-center">
+                              Dimensions
+                              <div t-esc="package_id.packaging_id.name"/>
+                            </div>
+                            <div class="col-4 text-right">
+                              Gross Weight
+                              <div t-esc="products_weight + package_id.shipping_weight" t-options="{'widget': 'float', 'precision': 2}"/>
+                            </div>
+                          </div>
+                      </th>
+                    </table>
+                    <table class="mt-0" style="table-layout:fixed;width:100%">
+                        <tr>
+                            <th width="7%">Sl No.</th>
+                            <th width="15%">Part No</th>
+                            <th width="30%">Description</th>
+                            <th width="10%">Qty</th>
+                            <th width="20%">Lot/Serial No</th>
+                            <th width="15%">Net Weight</th>
+                        </tr>
+
+                        <tr t-foreach="package_moves" t-as="l">
+                            <td name="td_slno" width="7%">
+                                <span t-esc="l_index + 1"/>
+                            </td>
+                            <td width="15%">
+                                <span style="font-size: 14px;" t-field="l.product_id.default_code"/>
+                                <div><img alt="barcode" t-if="l.product_id.default_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', l.product_id.default_code, 900,300)" style="max-height:50pt;max-width:100%;"/></div>
+                            </td>
+                            <td width="30%">
+                                <div><span t-field="l.product_id.name"/></div>
+                                <div t-if="l.product_id.l10n_in_hsn_code">HSN Code : <span t-field="l.product_id.l10n_in_hsn_code"/></div>
+                            </td>
+                            <td width="10%"><span t-field="l.qty_done"/></td>
+                            <td width="20%">
+                                <strong style="color: #ee5433;" t-field="l.lot_id"/>
+                                <div><img alt="barcode" t-if="l.lot_id" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', l.lot_id, 900,300)" style="max-height:50pt;max-width:100%;"/></div>
+                            </td>
+                            <td width="15%"><span t-field="l.product_id.weight"/></td>
+                        </tr>
+                    </table>
+                    <h4 class="text-center font-weight-bold mt-2">Made In India</h4>
+                    <p style="page-break-after: always;"/>
+                </t>
+           </div>
+        </t>
+    </template>
+
+    <template id="shipping_label">
+        <t t-call="web.html_container">
+            <t t-set="is_shipping_report" t-value="True"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="busch_igst_export_packing_list_report.shipping_label_report"/>
+            </t>
+        </t>
+    </template>
+</odoo>

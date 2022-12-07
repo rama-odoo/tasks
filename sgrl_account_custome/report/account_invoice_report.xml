@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_tax_invoice" model="ir.actions.report">
+            <field name="name">Tax / Invoice</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sgrl_account_custome.tax_invoice</field>
+            <field name="report_file">sgrl_account_custome.tax_invoice</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="account_commercial_invoice" model="ir.actions.report">
+            <field name="name">Commercial / Invoice</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sgrl_account_custome.commercial_invoice</field>
+            <field name="report_file">sgrl_account_custome.commercial_invoice</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

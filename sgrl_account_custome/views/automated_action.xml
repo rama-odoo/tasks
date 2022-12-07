@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    <record id="action_get_attachment" model="ir.actions.server">-->
+<!--        <field name="name">Account</field>-->
+<!--        <field name="model_id" ref="account.model_account_move"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--output = PdfFileWriter()-->
+<!--for result in results:-->
+<!--    reader = PdfFileReader(cStringIO.StringIO(result))-->
+<!--    for page in range(reader.getNumPages()):-->
+<!--        output.addPage(reader.getPage(page))-->
+<!--s = cStringIO.StringIO()-->
+<!--output.write(s)-->
+<!--return s.getvalue()-->
+<!--pdf = record.env.ref('account.move.report_id').render_qweb_pdf(record.ids)-->
+<!--b64_pdf = base64.b64encode(pdf[0])-->
+<!--name = "My Attachment"-->
+<!--return record.env['ir.attachment'].create({-->
+<!--            'name': name,-->
+<!--            'type': 'binary',-->
+<!--            'datas': b64_pdf,-->
+<!--            'datas_fname': name + '.pdf',-->
+<!--            'store_fname': name,-->
+<!--            'res_model': record._name,-->
+<!--            'res_id': record.id,-->
+<!--            'mimetype': 'application/x-pdf'-->
+<!--            })-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>

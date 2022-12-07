@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_layout_report_inherit" primary="True" inherit_id="web.external_layout_standard">
+            <xpath expr="//div[hasclass('text-center')]" position="replace">
+                <div class="text-center">
+                    <div t-field="company.report_footer"/>
+                    <div t-if="report_type == 'pdf'">
+                        <div>
+                            Phone:
+                            <span t-field="company.partner_id.phone"/>
+                        </div>
+                        <div>Email:
+                            <span t-field="company.partner_id.email"/>
+                        </div>
+                        <div>Website:
+                            <span t-field="company.partner_id.website"/>
+                        </div>
+                        <div>GSTIN:
+                            <span t-field="company.partner_id.vat"/>
+                        </div>
+                        Page:
+                        <span class="page"/>
+                        /
+                        <span class="topage"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <template id="custom_external_layout_report" primary="True" inherit_id="web.external_layout">
+            <xpath expr="//t[@t-call='{{company.external_report_layout_id.sudo().key}}']" position="replace"/>
+            <xpath expr="//t[@t-call='web.external_layout_standard']" position="attributes">
+                <attribute name="t-call">Maco_invoice_correction.external_layout_report_inherit</attribute>
+            </xpath>
+        </template>
+        <template id="external_layout_report" inherit_id="account.report_invoice_document">
+            <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+                <attribute name="t-call">Maco_invoice_correction.custom_external_layout_report</attribute>
+            </xpath>
+        </template>
+    </data>
+</odoo>
+    

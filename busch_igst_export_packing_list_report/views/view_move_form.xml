@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--    <record id="account_move_form_inherit" model="ir.ui.view">-->
+<!--        <field name="name">account.move.custom.inherit.form</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="studio_customization.odoo_studio_account__fb02379e-0c64-42cb-99ee-e1d295b16aa5"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='x_studio_packing_list_no']" position="before">-->
+<!--                <field name="x_delivery_picking_ids" invisible="1"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='x_studio_packing_list_no']" position="attributes">-->
+<!--                <attribute name="domain">[('id', '=', x_delivery_picking_ids)]</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+</odoo>

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="commercial_invoice_report">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <!--                    <t t-set="o" t-value="o.with_context(lang=lang)"/>-->
+                    <div class="page" style="display: flex;align-items: center;">
+                        <!--                        <div class="col-md-10 p-1">-->
+                        <img t-att-src="'/sgrl_account_custome/static/src/img/35771336.jpeg'"
+                             style="max-height: 60em; max-width: 100%;"/>
+                        <!--                         style="height:50px weight:20px"/>-->
+                        <img t-att-src="'/sgrl_account_custome/static/src/img/secound_page.jpeg'"
+                             style="max-height: 60em; max-width: 100%; page-break-before: always;"/>
+                        <!--                    <t t-call="sale.report_saleorder_document" t-lang="o.partner_id.lang"/>-->
+                        <table style="page-break-before: always; font-size:12px">
+                            <tr>
+                                <td class="p-3">
+                                    <span>RAYZON SOLAR PRIVATE LIMITED’S GENERAL TERMS AND CONDITIONS FOR PROFORMA
+                                        INVOICE /
+                                        QUOTATION / SALES ORDER
+                                        All goods and services are supplied on the terms and conditions set out herein
+                                        and
+                                        no addition or difference to these terms and conditions will have any effect
+                                        unless
+                                        expressly agreed in writing by the Supplier.
+                                        1. Proforma Invoice / Quotation / Sales Order:
+                                        (a) Unless previously withdrawn, a Proforma Invoice / Quotation / Sales Order is
+                                        valid for 3 days or such other period as stated in it. A Proforma Invoice /
+                                        Quotation / Sales Order is not to be construed as an obligation to sell but
+                                        merely
+                                        an invitation to treat and no contractual relationship shall arise from it until
+                                        the
+                                        Customer’s order has been accepted by the Supplier.
+                                        (b) No Supplier shall be bound by any condition attaching to the Customer’s
+                                        order or
+                                        acceptance of a Proforma Invoice / Quotation / Sales Order and, unless such
+                                        conditions are expressly accepted by the Supplier in writing, the Customer
+                                        acknowledges that such conditions are expressly negated.
+                                        (c)Cancellation of an order can be made only with the Supplier's consent and
+                                        upon
+                                        terms that will compensate the Supplier against loss.
+                                        (d) Change orders or briefing updates, amendments or changes requested by the
+                                        Customer shall not be effective unless accepted in writing by the Supplier.
+                                        The Customer shall be liable for any costs, expenses, and liabilities incurred
+                                        by
+                                        the Supplier in connection with any such change order. Important Notice:
+                                        This Budgetary offer is preliminary and not final and as such not binding. It is
+                                        tendered for discussion only, does not constitute an offer to sell and/or term
+                                        to
+                                        contract and Rayzon Solar Private Limited can, without notice make any change in
+                                        Rayzon Solar Private Limited’s own discretion. Any contract to sell the subject
+                                        matter of proposal shall be subject to prior mutual agreement as to price (which
+                                        may
+                                        be different than that shown herein), schedule, scope of work and terms.
+                                        2. PRICE
+                                        (a) Quoted prices do not include GST.
+                                        (b) The Supplier, shall be entitled to vary the quoted price for the goods and
+                                        services at any time prior to delivery if the cost to the Supplier of performing
+                                        the
+                                        contract is increased and the Supplier reserves the right to apply prices ruling
+                                        at
+                                        the time of providing the goods or services.
+                                        3. Taxes and Duties
+                                        (a) The price quoted is basic price exclusive of all taxes and duties the same
+                                        needs
+                                        to be borne by Buyer.
+                                        (b) GST will be charged extra at actuals.
+                                        (c) Further should there be any new levies / duties imposed by the central
+                                        government / state government / other statutory authorities either on finished
+                                        product and/or for any raw material used in the finished goods the same shall be
+                                        reimbursed to Rayzon Solar Private Limited by Buyer at actuals.(d) Buyer shall
+                                        furnish necessary declaration forms wherever applicable (in case of duty
+                                        exception/benefit) the same shall be reimbursed to us by buyer at actuals.
+                                        4. Terms of Payment
+                                        Customer shall arrange payment as per terms agreed in the Proforma Invoice /
+                                        Quotation / Sales Order in stipulated time or within 2 days for the date of the
+                                        Proforma Invoice / Quotation / Sales Order received.
+                                        (a) The Customer is not entitled to withhold payment or make any deduction from
+                                        the
+                                        quoted price of the goods and services in respect of any set off or
+                                        counterclaim.
+                                        (b)If the Customer fails to pay for any of the goods or services, the Supplier
+                                        may
+                                        in its absolute discretion, but without prejudice to any other remedy it may
+                                        have,
+                                        postpone the fulfilment of its obligations under this order or briefing and
+                                        under
+                                        any other order or briefing with this Customer until such payment is made and
+                                        charge
+                                        to the Customer any extra expense incurred thereby.
+                                        5. In case of LC payment terms Rayzon Solar Private Limited will consider LC
+                                        terms
+                                        as per LC related communication done with the respective commercial team. LC
+                                        will
+                                        consider as accepted only if finance department share their acceptance with the
+                                        company seal. Any damage/loss including but not limited to interest, penalty,
+                                        demurrage, detention made due delay in acceptance of LC will be borne by
+                                        customer
+                                        only.
+
+                                        i) By mutual conciliation, negotiation and agreements the Parties shall try to
+                                        amicably resolve the Dispute after sending due written notice to resolve within
+                                        7
+                                        days.
+                                        ii) If, for any reason, such Dispute cannot be resolved amicably by the Parties,
+                                        within 7 days from the date of receipt of notice mention in clause (1) above,
+                                        the
+                                        same shall be settled by having recourse to Arbitration to be conducted by a
+                                        sole
+                                        arbitrator and in case the Parties do not agree on appointment of the sole
+                                        arbitrator it shall be adjudicated by a panel of three arbitrators, of which
+                                        each
+                                        Party shall appoint one Arbitrator and the third Arbitrator shall be appointed
+                                        jointly by the two Arbitrators so appointed. The Arbitration proceedings shall
+                                        be
+                                        held in accordance with the Arbitration and Conciliation Act 1996 with the
+                                        Rules, or
+                                        any subsequent enactment or amendment thereto from time to time. The decision of
+                                        the
+                                        Arbitrator(s) shall be final and binding upon the Parties. The seat of
+                                        arbitration
+                                        shall be Surat, Gujarat. The arbitration proceedings shall be in English
+                                        language.
+                                        This clause shall survive termination or expiry of this Proforma Invoice /
+                                        Quotation
+                                        / Sales Order. Each Party shall bear its own costs, expenses and counsel fees in
+                                        relation to such arbitration proceedings unless otherwise decided under the
+                                        award.
+                                        15. Change in Law
+                                        Any additional cost or benefit impacting the contract price resulting from a
+                                        “Change
+                                        in Law”, towards leviable taxes, including eligible credits, in respect of goods
+                                        and
+                                        services to be supplied under the Order, shall be to the account of the Seller
+                                        because of impact of such “Change in Law”.
+                                        “Change in law” means occurrence of any of the following event after submission
+                                        of
+                                        bid and during the performance of the obligations under the Order,
+                                        a. The enactment of any new Indian law;
+                                        b. The repeal, modification or re-enactment of any existing Indian Law;
+                                        c. The commencement of any Indian Law, which has not entered into effect until
+                                        the
+                                        date of Order;
+                                        d. A change in the interpretation or application of any Indian law, by a
+                                        judgment of
+                                        a court of record which has become final, conclusive and binding, as
+                                        compared to such interpretation or application by a Court of record prior to the
+                                        date of Order; or
+                                        e. Any change in the rates of any of the taxes that have a direct effect on the
+                                        Order”
+
+                                        16. Notices
+                                        All notices, communications, references and complaints issued or made by the
+                                        Vendor/Supplier or the Purchaser, inter se concerning the supplies and the
+                                        Proforma
+                                        Invoice / Quotation / Sales Order and related communication shall be in writing
+                                        and
+                                        sent to the above address and on the email address of the designated personnel
+                                        of
+                                        the Parties.
+
+                                        17. Confidentiality:
+                                        All non-public, confidential or proprietary information of the Seller,
+                                        including,
+                                        but not limited to, specifications, samples, patterns, designs, plans, drawings,
+                                        documents, data, business operations, pricing, discounts or rebates, disclosed
+                                        by
+                                        Seller to Buyer, whether disclosed orally or disclosed or accessed in written,
+                                        electronic, or other form or media, and whether or not marked, designated or
+                                        otherwise identified as “confidential,” in connection with the Order is
+                                        confidential, solely for the use of performing the Order and may not be
+                                        disclosed or
+                                        copied unless authorized by Seller in writing. Upon Seller’s request, Buyer
+                                        shall promptly return all documents and other materials received from Seller.
+                                        Seller
+                                        shall be entitled to injunctive relief for any violation of this Section. This
+                                        Section shall not apply to information that is: (a) in the public domain; (b)
+                                        rightfully and legally known to the Buyer at the time of disclosure; or (c)
+                                        rightfully and legally obtained by the Seller on a non-confidential basis from a
+                                        third party.
+                                    </span>
+                                </td>
+                                <td class="p-3">
+                                    <span>6. UNLOADING:
+                                        Unloading of material will be in customer’s scope. Any detention charges charged
+                                        by
+                                        transporter will be borne by customer Any delay in unloading in consignment on
+                                        supply, you will be charged demurrage fees for each additional day (Rs. 2500/-
+                                        per
+                                        19 ft. vehicle Rs.3500/- per 32 ft. vehicle per night extra stay)
+                                        7. Interest Storage Cost Towards Non Lifting of Goods in Stipulated Time
+                                        Supplier
+                                        will issue inspection call for readiness of material for Routine Tests
+                                        inspection at
+                                        our works. In case, if you will not organize inspection as per scheduled date
+                                        time,
+                                        you will have to make payment immediately failing which, we will charge interest
+                                        @
+                                        24% p.a. plus 1% storage charge per week from the date of readiness of material.
+                                        In
+                                        case of “Penalty towards Late Delivery Clause” is asked by client. It will be
+                                        applicable to client also for not lifting of material by paying payment
+                                        immediately
+                                        in 3 days from date of readiness in same pattern. Any delay in payment from
+                                        customer
+                                        resulting in delay in delivery schedule shall be borne by customer only.
+                                        8. Cancellation or Suspension of Orders:
+                                        Except where the Customer has a statutory right of termination, orders accepted
+                                        by
+                                        the Supplier may not be cancelled either wholly or in part without the consent
+                                        in
+                                        writing of the Supplier. Customer shall bear the cost / losses occurred to the
+                                        supplier in case of such Cancellation or Suspension of Orders.
+                                        9. Consequential Losses Limitation of Liability
+                                        (a) Any service or advice which may be offered by the Supplier, its servants or
+                                        agents to the Customer or its agents, is rendered in good faith and the Supplier
+                                        shall not be liable for any loss or damage arising therefrom.
+                                        (b) For the avoidance of doubt, the Supplier will be under no liability
+                                        whatsoever
+                                        to the Customer for any loss, injury or damage (including consequential loss,
+                                        injury
+                                        or damage) suffered or caused as a result of or arising out of any act or
+                                        omission
+                                        (whether negligent or otherwise) by the Supplier, its servants or agents or any
+                                        other person in any way related to or arising out of the Quotation by the
+                                        Supplier.
+
+                                        10. Limitation of liability:
+                                        Notwithstanding anything contained in this terms and conditions, its appendices
+                                        or
+                                        orders to the contrary, with respect to any and all claims arising out of the
+                                        performance or non-performance of obligations under this terms and conditions or
+                                        purchase orders, whether arising in contract, tort, warranty, Strict liability
+                                        or
+                                        otherwise, Rayzon Solar Private Limited's liability shall not exceed in the
+                                        aggregate 3% of the Contract Value or Price of order value or payments received
+                                        against this order, whichever is lower.
+
+                                        11. Intellectual Property
+                                        All copyright, design right and other intellectual property in any design,
+                                        specification, process, method of working or other information relating to the
+                                        Goods
+                                        or Services (other than that provided by the Customer to the Supplier) shall
+                                        vest
+                                        for all time in the Supplier. The Supplier only grants to the Customer an
+                                        irrevocable licence to use the Goods or Services for the specified project in
+                                        accordance with the Customers brief.
+                                        12. Superiority of The Agreement:
+                                        These General Terms and Conditions of Quotation and Sale shall constitute the
+                                        entire
+                                        agreement between the Supplier and the Customer and no terms, conditions,
+                                        obligations or other provisions of any nature not contained in these General
+                                        Terms
+                                        and Conditions of Proforma Invoice / Quotation / Sales Order and Sale shall be
+                                        of
+                                        any effect.
+                                        For the avoidance of doubt, these General Terms and Conditions of Proforma
+                                        Invoice /
+                                        Quotation / Sales Order and Sales shall apply in all circumstances, including
+                                        where
+                                        the Customer validly accept this document or where the Customer and the Supplier
+                                        otherwise proceed with carrying out work under the brief, whether or not the
+                                        Customer, at any time and by any means, purports to impose its own terms and
+                                        conditions.
+                                        13. Governing Law Dispute Resolution
+                                        Subject to dispute resolution clause below these General Terms and Conditions of
+                                        Quotation and Sale are governed by, and are to be construed in accordance with,
+                                        the
+                                        laws of India and the parties submit to the exclusive jurisdiction of the courts
+                                        of
+                                        Surat, Gujarat.
+                                        14. Dispute Resolution Clause
+                                        Any difference, dispute, controversy, or claim (“Dispute”) which may arise
+                                        between
+                                        the Parties out of or in relation to or in connection with this Proforma Invoice
+                                        /
+                                        Quotation / Sales Order, shall be resolved/settled by the Parties in the
+                                        following
+                                        order of priority and the Parties shall not seek any other legal recourse/remedy
+                                        without exhausting the agreed course of dispute resolution process mentioned
+                                        herein
+                                        below
+
+                                        18. Scanned Copy
+                                        Scanned transmissions (includes signed/unsigned copy received via any electronic
+                                        or
+                                        any other communication or hand delivery mode) of this document shall be
+                                        considered
+                                        as an original of the document, and shall have the same effect and force as
+                                        signed
+                                        hard-copy originals of the document. It shall be binding and legally
+                                        enforceable.
+                                        19. Jurisdiction
+                                        Any dispute pertaining to interpretation, application, fulfilment / breach of
+                                        any
+                                        condition of Proforma Invoice / Quotation / Sales Order shall be subject to
+                                        exclusive SURAT jurisdictions only and The Seller have right to withhold all the
+                                        resources till the final decision of the dispute by the Competent Court.
+                                        Any Notices or demand to be given under this Proforma Invoice / Quotation /
+                                        Sales
+                                        Order must be in writing and delivered by ‘Registered Post Acknowledgement Due’
+                                        to
+                                        the party concerned at the addresses mentioned above (Rayzon Solar Private
+                                        Limited
+                                        send all correspondence to their address Block No. 105, B/H Aron Pipes, B/H
+                                        Hariya
+                                        Talav, Kim Mandvi Road, Karanj, Surat-394110, Gujarat – India) or specified by
+                                        the
+                                        parties.
+
+                                        20. Indemnification:
+                                        The Customer shall indemnify, defend and hold the Seller harmless from and
+                                        against
+                                        any and all claims, actions, damages, demands, liabilities, costs manufacturing
+                                        liability and expenses, including reasonable attorney’s fees and expenses,
+                                        resulting
+                                        from any act or omission of the acting party or its employees under this
+                                        Proforma
+                                        Invoice / Quotation / Sales Order, that causes or results in property damage,
+                                        personal injury or death. The Seller is selling the products with the
+                                        understanding
+                                        and belief that you, as the customer have the appropriate licenses, training,
+                                        experience and insurance to perform said transaction safely and legally.
+
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                        <img t-att-src="'/sgrl_account_custome/static/src/img/first_page.jpeg'"
+                             style="max-height: 60em;page-break-before: always;"/>
+                    </div>
+                    <!--                    <img t-att-src="'/sgrl_account_custome/static/src/img/terms_page22'" style="page-break-inside: always; "/>-->
+                    <!--                                                </div>-->
+                    <!--                        <table class="w-100" style="border:1px solid black;border-collapse:separate;">-->
+                    <!--                            <tr>-->
+                    <!--                                <td class="text-center" colspan="8">-->
+                    <!--                                    <strong>COMMERCIAL INVOICE</strong>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr>-->
+                    <!--                                <td class="pl-2" colspan="3">[] Duplicate</td>-->
+                    <!--                                <td colspan="1">[] Original</td>-->
+                    <!--                                <td colspan="2">[] Triplicate</td>-->
+                    <!--                                <td colspan="2">[] Copy of Transport</td>-->
+                    <!--                            </tr>-->
+                    <!--                        </table>-->
+                    <!--                        <table class="w-100 pl-2" style="border:1px solid black;border-collapse:separate;">-->
+                    <!--                            <tr>-->
+                    <!--                                <td class="border-right border-dark pl-2" rowspan="3">-->
+                    <!--                                    <strong>Consignee / Shipped to :</strong>-->
+                    <!--                                    <div t-field="o.partner_shipping_id"-->
+                    <!--                                         t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>GSTIN:</strong>-->
+                    <!--                                        <span class="pl-2" t-field="o.partner_shipping_id.vat"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>State Name :</strong>-->
+                    <!--                                        <span class="pl-2" t-field="o.partner_shipping_id.country_id"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>State Code:</strong>-->
+                    <!--                                        <span class="pl-2" t-field="o.partner_shipping_id.zip"/>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    <span>Invoice No.</span>-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong t-field="o.name"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="pl-2">-->
+                    <!--                                    <span>Invoice Date</span>-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong t-field="o.invoice_date"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-bottom border-black">-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    Buyer's Order No.-->
+                    <!--                                    <p>-->
+                    <!--                                        <span t-field="o.ref"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="pl-1">-->
+                    <!--                                    Buyer Order Date-->
+                    <!--                                    <p>-->
+                    <!--                                        &lt;!&ndash;                                        <strong t-esc="o.invoice_line_ids.sale_line_ids.order_id.x_studio_customer_po_date" />&ndash;&gt;-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-bottom border-black pl-2">-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    Sales Order No.-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong t-field="o.invoice_line_ids.sale_line_ids.order_id.name"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="pl-2">-->
+                    <!--                                    SGRL IEC Code:-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong>3405004454</strong>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-bottom border-black">-->
+                    <!--                                <td class="border-right border-dark pl-2" rowspan="5">-->
+                    <!--                                    <strong>Buyer Other than Consignee :</strong>-->
+                    <!--                                    <div t-field="o.partner_id"-->
+                    <!--                                         t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>GSTIN No.</strong>-->
+                    <!--                                        <span t-field="o.partner_id.vat"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>State Name :</strong>-->
+                    <!--                                        <span t-field="o.partner_id.country_id"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>State Code :</strong>-->
+                    <!--                                        <span t-field="o.partner_id.zip"/>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                                <tr class="border-bottom border-black">-->
+                    <!--                                    <td class="border-right border-dark pl-2">-->
+                    <!--                                        <span>Mode/Payment Terms</span>-->
+                    <!--                                        <p>-->
+                    <!--                                            <strong t-field="o.invoice_payment_term_id"/>-->
+                    <!--                                        </p>-->
+                    <!--                                    </td>-->
+                    <!--                                    <td class="pl-2">-->
+                    <!--                                        <span>Mode of Transport</span>-->
+                    <!--                                        <p>-->
+                    <!--                                            <strong t-field="o.invoice_incoterm_id"/>-->
+                    <!--                                        </p>-->
+                    <!--                                    </td>-->
+                    <!--                                </tr>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-bottom border-black">-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    Country of Origin-->
+                    <!--                                    <strong>INDIA</strong>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="pl-2">-->
+                    <!--                                    Country of Final Destination-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong t-field="o.country"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-bottom border-black">-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    Loading Destination/Port Name-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong t-field="o.invoice_line_ids.sale_line_ids.order_id.partner_invoice_id.city"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="pl-2">-->
+                    <!--                                    Delivery Destination/Port Name:-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong t-field="o.partner_shipping_id.city"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-black" style="border-bottom: 1px solid black">-->
+                    <!--                                <td class="pl-2" colspan="2">-->
+                    <!--                                    Terms of Delivery-->
+                    <!--                                    <p>-->
+                    <!--                                        <strong t-field="o.invoice_incoterm_id"/>-->
+                    <!--                                    </p>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                        </table>-->
+                    <!--                        <table class="w-100 border border-dark">-->
+                    <!--                            <thead>-->
+                    <!--                                <tr class="border-bottom border-black text-center pl-2">-->
+                    <!--                                    <th class="border-right border-dark pl-2">-->
+                    <!--                                        <strong>Sr. No</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                    <th class="border-right border-dark">-->
+                    <!--                                        <strong>Description of Goods</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                    <th class="border-right border-dark">-->
+                    <!--                                        <strong>Packaging Type</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                    <th class="border-right border-dark">-->
+                    <!--                                        <strong>Batch No. Markings</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                    <th class="border-right border-dark">-->
+                    <!--                                        <strong>Quantity (kgs)</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                    <th class="border-right border-dark">-->
+                    <!--                                        <strong>Rate</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                    <th class="border-right border-dark p-2">-->
+                    <!--                                        <strong>Per</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                    <th class="border-right border-dark">-->
+                    <!--                                        <strong>Amount</strong>-->
+                    <!--                                    </th>-->
+                    <!--                                </tr>-->
+                    <!--                            </thead>-->
+                    <!--                            <tbody class="commercial_invoice_tbody">-->
+                    <!--                                <t t-set="lines"-->
+                    <!--                                   t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>-->
+                    <!--                                <t t-foreach="lines" t-as="line">-->
+                    <!--                                    <tr class="border-black border-bottam border-black">-->
+                    <!--                                        <t t-if="not line.display_type" name="account_invoice_line_accountable">-->
+                    <!--                                            <td class="border-right border-dark pl-2">-->
+                    <!--                                                <t t-esc="line_index +1"/>-->
+                    <!--                                            </td>-->
+                    <!--                                            <td class="border-right border-dark pl-2" name="account_invoice_line_name">-->
+                    <!--                                                <span t-field="line.name" t-options="{'widget': 'text'}"/>-->
+                    <!--                                                <p>-->
+                    <!--                                                    <strong>CAS No.</strong>-->
+                    <!--                                                    &lt;!&ndash;                                                    <span t-esc="line.product_id.x_studio_cas_number" />&ndash;&gt;-->
+                    <!--                                                </p>-->
+                    <!--                                                <strong>HSN Code</strong>-->
+                    <!--                                                <p>-->
+                    <!--                                                    <span t-esc="line.product_id.l10n_in_hsn_code"/>-->
+                    <!--                                                </p>-->
+                    <!--                                            </td>-->
+                    <!--                                            <td class="border-right border-dark text-center">-->
+                    <!--                                                <span t-field="o.stock_move_id.product_id.stock_quant_ids.package_id.packaging_id"/>-->
+                    <!--                                            </td>-->
+                    <!--                                            <td class="border-right border-dark pr-2">-->
+                    <!--                                                <span t-field="o.stock_move_id.lot_ids"/>-->
+                    <!--                                            </td>-->
+                    <!--                                            <td class="border-right border-dark pl-2">-->
+                    <!--                                                <div class="text-left" t-field="line.quantity"/>-->
+                    <!--                                            </td>-->
+                    <!--                                            <td class="border-right border-dark pl-2">-->
+                    <!--                                                <div class="text-right" t-field="line.price_unit"/>-->
+                    <!--                                            </td>-->
+                    <!--                                            <td class="border-right border-dark pr-2">-->
+                    <!--                                                <div class="text-right" t-field="line.product_uom_id"-->
+                    <!--                                                     groups="uom.group_uom"/>-->
+                    <!--                                            </td>-->
+                    <!--                                            <td class="border-black o_price_total pl-2 border-right border-dark">-->
+                    <!--                                                <div class="text-right pr-2" t-field="line.price_subtotal"-->
+                    <!--                                                     groups="account.group_show_line_subtotals_tax_excluded"/>-->
+                    <!--                                                <div class="text-right pr-2" t-field="line.price_total"-->
+                    <!--                                                     groups="account.group_show_line_subtotals_tax_included"/>-->
+                    <!--                                            </td>-->
+                    <!--                                        </t>-->
+                    <!--                                    </tr>-->
+                    <!--                                </t>-->
+                    <!--                            </tbody>-->
+                    <!--                        </table>-->
+                    <!--                        <table class="border-left border-dark w-100" style="page-break-inside: avoid;">-->
+                    <!--                            <tr class="border-bottom border-black">-->
+                    <!--                                <td class="border-right border-dark p-3"/>-->
+                    <!--                                <td class="border-right border-dark">-->
+                    <!--                                    <strong>TOTAL No of Pallets</strong>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="border-right border-dark p-3"/>-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    <div class="text-left">Gross Wt.:</div>-->
+                    <!--                                    <div class="text-left" t-field="o.gross_wight"/>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    <div class="text-left">Net Wt.:</div>-->
+                    <!--                                    <div class="text-left pr-2" t-field="o.net_wight"/>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="border-right border-dark p-3"/>-->
+                    <!--                                <td class="border-right border-dark pl-2">-->
+                    <!--                                    <strong>TOTAL</strong>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="border-right border-dark">-->
+                    <!--                                    <div class="text-right pr-2" t-field="o.amount_residual"/>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-black" style="border-right: 1px solid black">-->
+                    <!--                                <td class="border-right border-dark pl-2" colspan="8">-->
+                    <!--                                    <strong>WORD AMOUNT :</strong>-->
+                    <!--                                    <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                        </table>-->
+                    <!--                        <table class="w-100"-->
+                    <!--                               style="border: 1px solid black;border-collapse:separate;page-break-inside: avoid;">-->
+                    <!--                            <tr>-->
+                    <!--                                <td class="border-right border-dark pl-2" colspan="3">-->
+                    <!--                                    <strong>Notify Party: (TIGRO INDUSTRIES):</strong>-->
+                    <!--                                    <div t-field="o.notify"-->
+                    <!--                                         t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>VAT NO:</strong>-->
+                    <!--                                        <span t-field="o.notify.vat"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>Gross Wt. will be the Weight for Shipping from other info section in delivery-->
+                    <!--                                        orders-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                                <td class="pl-2" colspan="5">-->
+                    <!--                                    <strong>CONTAINER DETAILS:</strong>-->
+                    <!--                                    <strong>(Whole section to be made in other info)</strong>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>CONT.SEAL NO:</strong>-->
+                    <!--                                        <span t-field="o.cont_seal_no"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>RFID SEAL NO:</strong>-->
+                    <!--                                        <span t-field="o.rfid_seal_no"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>FREIGHT:</strong>-->
+                    <!--                                        <span t-field="o.freight"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>INSURANCE: Euro</strong>-->
+                    <!--                                        <span t-field="o.insurance"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>CONTAINER NO:</strong>-->
+                    <!--                                        <span t-field="o.container_no"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div>-->
+                    <!--                                        <strong>INSURANCE: Euro</strong>-->
+                    <!--                                        <span t-field="o.insurance"/>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                        </table>-->
+                    <!--                        <table class="pl-2 w-100"-->
+                    <!--                               style="border: 1px solid black;border-collapse:separate;page-break-inside: avoid;">-->
+                    <!--                            <tr>-->
+
+                    <!--                                <td colspan="8">-->
+                    <!--                                    <strong>Export Under: Based on the drop down option selected from the other info.-->
+                    <!--                                    </strong>-->
+                    <!--                                    <span t-field="o.export_under"/>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-bottom border-black">-->
+                    <!--                                <td colspan="8">-->
+                    <!--                                    <strong>Export info from the text field. This is to be manual written in the other-->
+                    <!--                                        info section-->
+                    <!--                                    </strong>-->
+                    <!--                                    <span t-field="o.export_info"/>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-black" style="border-bottom: 1px solid black;page-break-inside: avoid;">-->
+                    <!--                                <td colspan="8">-->
+                    <!--                                    <strong>Company's Bank Detail:</strong>-->
+                    <!--                                    <strong>-->
+                    <!--                                        Bank Name: DBS Bank India Limited.-->
+                    <!--                                        <br/>-->
+                    <!--                                        Branch : SURAT-->
+                    <!--                                        <br/>-->
+                    <!--                                        Address: Shop No 7, Shlok Business Centre, Udhana Darwaja, Ring Road, Surat-->
+                    <!--                                        395002.-->
+                    <!--                                        <br/>-->
+                    <!--                                        IFSC Code: DBSS0IN0831-->
+                    <!--                                        <br/>-->
+                    <!--                                        SWIFT Code: DBSSINBB-->
+                    <!--                                        <br/>-->
+                    <!--                                        AD Code:-->
+                    <!--                                    </strong>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr class="border-black" style="border-bottom: 1px solid black;page-break-inside: avoid;">-->
+                    <!--                                <td class="border-right border-dark">-->
+                    <!--                                    <strong>Declaration :</strong>-->
+                    <!--                                    We declare that this Invoice shows the actual price of-->
+                    <!--                                    the-->
+                    <!--                                    goods described and that all particulars are true and correct.-->
+                    <!--                                </td>-->
+                    <!--                                <td>-->
+                    <!--                                    <div class="text-right pr-2">-->
+                    <!--                                        <t t-esc="o.company_id.name"/>-->
+                    <!--                                        <p>Authorised Signatory</p>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                        </table>-->
+                    <!--                    </div>-->
+                </t>
+            </t>
+        </template>
+
+        <template id="commercial_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.partner_id.lang"/>
+                    <t t-call="sgrl_account_custome.commercial_invoice_report" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+<!--        <report id="report_id"-->
+<!--                model="sgrl_account_custome"-->
+<!--                string="Model Report"-->
+<!--                report_type="qweb-pdf"-->
+<!--                name="sgrl_account_custome.commercial_invoice_report"-->
+<!--                file="sgrl_account_custome.commercial_invoice_report"-->
+<!--                menu="False"/>-->
+    </data>
+</odoo>

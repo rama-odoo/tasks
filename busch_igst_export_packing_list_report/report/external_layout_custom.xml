@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_boxed_inherit" primary="True" inherit_id="web.external_layout_boxed">
+        <xpath expr="//div[hasclass('o_boxed_header')]" position="replace">
+            <table width="100%">
+                <tr>
+                  <td class="text-left">
+                    <t t-if="is_commercial_report">
+                      <h3>Commercial Invoice</h3>
+                    </t>
+                    <t t-if="is_tax_report">
+                      <h3>Tax Invoice</h3>
+                    </t>
+                    <t t-if="is_packing_list">
+                      <h3>Packing List</h3>
+                    </t>
+                    <t t-if="is_shipping_report">
+                      <h3>Shipping Label</h3>
+                    </t> 
+                  </td>
+                  <td class="text-right">
+                    <div><img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 100px; margin-top:5px;" alt="Logo"/></div>
+                  </td>
+                </tr>
+            </table>
+        </xpath>
+        <xpath expr="//div[@class='pt-5']" position="attributes">
+            <attribute name="class">pt-0</attribute>
+        </xpath>
+        <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']" position="replace">
+            <t t-if="not is_shipping_report">
+                <div t-attf-class="footer o_boxed_footer o_company_#{company.id}_layout">
+                    <div class="text-center">
+                        <ul class="list-inline">
+<!--                            <li t-if="company.x_studio_pan_no" class="list-inline-item">PAN No: <span t-field="company.x_studio_pan_no"/></li>-->
+<!--                            <li t-if="company.x_studio_iec_no" class="list-inline-item">IEC No: <span t-field="company.x_studio_iec_no"/></li>-->
+<!--                            <li t-if="company.vat" class="list-inline-item"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>-->
+<!--                            <li t-if="company.x_studio_ad_code" class="list-inline-item">AD Code: <span t-field="company.x_studio_ad_code"/></li>-->
+                        </ul>
+                        <div t-field="company.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;,&quot;name&quot;], &quot;no_marker&quot;: true, &quot;no_tag_br&quot;: True}"/>
+                        <div t-if="report_type == 'pdf'">
+                            Page: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="custom_external_layout" primary="True" inherit_id="web.external_layout">
+        <xpath expr="//t[@t-call='{{company.external_report_layout_id.sudo().key}}']" position="replace"/>
+        <xpath expr="//t[@t-call='web.external_layout_standard']" position="replace">
+            <t t-call="busch_igst_export_packing_list_report.external_layout_boxed_inherit"><t t-raw="0"/></t>
+        </xpath>
+    </template>
+</odoo>
