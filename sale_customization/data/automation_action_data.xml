@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="action_sys_date" model="base.automation">
+        <field name="name">Account Move Line Discount</field>
+        <field name="model_id" ref="account.model_account_move_line"/>
+        <field name="trigger">on_create_or_write</field>
+        <field name="state">code</field>
+        <field name="code">
+rec = env['account.move.line'].search([],limit=1)
+rec['discount'] = record.x_discount
+        </field>
+     </record>
+<!--    <record id="action_sys_date" model="base.automation">-->
+<!--        <field name="name">Account Move Line Discount</field>-->
+<!--        <field name="model_id" ref="purchase.model_purchase_order_line"/>-->
+<!--        <field name="trigger">on_create_or_write</field>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--vals = []-->
+<!--for line in record:-->
+<!--    move_line = {-->
+<!--            'x_discounted_unit_price' = line.purchase_line_id.x_discount_unit_price,-->
+<!--            }-->
+<!--            vals.append(move_line)-->
+<!--invoice_line_ids = env['account.move.line'].create(vals)-->
+
+<!--&lt;!&ndash;rec = env['account.move.line'].search([])&ndash;&gt;-->
+<!--&lt;!&ndash;rec['x_discounted_unit_price'] = record.x_discount_unit_price&ndash;&gt;-->
+<!--        </field>-->
+<!--     </record>-->
+</odoo>

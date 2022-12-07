@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_production_order" model="ir.actions.report">
+            <field name="name">Label Printing</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bijak_manufacture_order.product_report</field>
+            <field name="report_file">bijak_manufacture_order.product_report</field>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

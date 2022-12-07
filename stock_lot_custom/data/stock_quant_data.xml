@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="field_device_imei_Number" model="ir.model.fields">
+            <field name="name">x_device_imei_Number</field>
+            <field name="field_description">Device - (IMEI Number)</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="ttype">char</field>
+            <field name="store" eval="False"/>
+            <field name="readonly" eval="True"/>
+            <field name="related">lot_id.x_device_imei_number</field>
+        </record>
+        <record id="field_sim1" model="ir.model.fields">
+            <field name="name">x_sim1</field>
+            <field name="field_description">SIM-1 (Mobile Number)</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="ttype">char</field>
+            <field name="store" eval="False"/>
+            <field name="readonly" eval="True"/>
+            <field name="related">lot_id.x_sim1_mobile_number</field>
+        </record>
+        <record id="field_sim2" model="ir.model.fields">
+            <field name="name">x_sim2</field>
+            <field name="field_description">SIM-2 (Mobile Number)</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="ttype">char</field>
+            <field name="store" eval="False"/>
+            <field name="readonly" eval="True"/>
+            <field name="related">lot_id.x_sim2_mobile_number</field>
+        </record>
+    </data>
+</odoo>

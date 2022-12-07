@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="field_x_discount" model="ir.model.fields">
+        <field name="name">x_discount</field>
+        <field name="field_description">Discount</field>
+        <field name="model_id" ref="purchase.model_purchase_order_line"/>
+        <field name="ttype">float</field>
+<!--        <field name="related">invoice_lines.discount</field>-->
+        <field name="readonly" eval="False"/>
+    </record>
+    <record id="field_x_discount_unit_price" model="ir.model.fields">
+        <field name="name">x_discount_unit_price</field>
+        <field name="field_description">Discounted unit price</field>
+        <field name="model_id" ref="purchase.model_purchase_order_line"/>
+        <field name="ttype">float</field>
+        <field name="readonly" eval="False"/>
+    </record>
+
+    <record id="sale_customization.field_x_discount" model="ir.model.fields">
+        <field name="depends">price_unit,price_subtotal</field>
+        <field name="compute">
+for order_id in self:
+    for line in order_id:
+        if line.x_discount:
+            line['price_subtotal'] = line.price_unit * (1 - line.x_discount / 100) * line.product_qty
+        </field>
+    </record>
+    <record id="sale_customization.field_x_discount_unit_price" model="ir.model.fields">
+        <field name="depends">price_unit,x_discount</field>
+        <field name="compute">
+for order_id in self:
+    for line in order_id:
+        if line.x_discount:
+            line['x_discount_unit_price'] = abs(line.price_subtotal - line.price_unit)
+        </field>
+    </record>
+</odoo>

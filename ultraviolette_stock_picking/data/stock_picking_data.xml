@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="field_x_relative_initial_transfer_no" model="ir.model.fields">
+        <field name="name">x_relative_initial_transfer_no</field>
+        <field name="field_description">Relative Transfer No</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="ttype">char</field>
+        <field name="store" eval="True"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="stock_picking.field_x_relative_initial_transfer_no" model="ir.model.fields">
+        <field name="depends">group_id.stock_move_ids</field>
+        <field name="compute">
+for rec in self:
+    rec['x_relative_initial_transfer_no'] = rec.group_id and rec.group_id.stock_move_ids and rec.group_id.stock_move_ids.mapped('picking_id')[0].name != rec.name and rec.group_id.stock_move_ids.mapped('picking_id')[0].name or False
+        </field>
+    </record>
+</odoo>

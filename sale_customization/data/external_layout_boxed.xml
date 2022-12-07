@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="external_layout_boxed_inherit_rama" inherit_id="web.external_layout_boxed">
+        <xpath expr="//div[hasclass('o_boxed_header')]" position="inside">
+            <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                <span t-if="doc.state not in ['draft','sent']">Order #</span>
+                <span t-if="doc.state in ['draft','sent']">Quotation #</span>
+            </t>
+            <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                <span>Pro-Forma Invoice #</span>
+            </t>
+            <span t-field="doc.name"/>
+        </xpath>
+    </template>
+</odoo>

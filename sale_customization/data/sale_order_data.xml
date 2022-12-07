@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="field_x_contact_person" model="ir.model.fields">
+        <field name="name">x_contact_person</field>
+        <field name="field_description">Contact Person</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">res.partner</field>
+    </record>
+
+    <record id="field_x_note" model="ir.model.fields">
+        <field name="name">x_note</field>
+        <field name="field_description">note</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="ttype">html</field>
+    </record>
+</odoo>

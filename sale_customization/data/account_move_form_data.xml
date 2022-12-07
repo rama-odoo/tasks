@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="field_x_discounted_unit_price" model="ir.model.fields">
+        <field name="name">x_discounted_unit_price</field>
+        <field name="field_description">Discount Unit Price</field>
+        <field name="model_id" ref="account.model_account_move_line"/>
+        <field name="ttype">float</field>
+        <field name="store" eval="True"/>
+    </record>
+
+    <record id="sale_customization.field_x_discounted_unit_price" model="ir.model.fields">
+        <field name="depends">price_unit,discount</field>
+        <field name="compute">
+for order_id in self:
+    for line in order_id:
+        if line.discount:
+            line['x_discounted_unit_price'] = line.price_unit - line.price_subtotal
+        </field>
+    </record>
+</odoo>

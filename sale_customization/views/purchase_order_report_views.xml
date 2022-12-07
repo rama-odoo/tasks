@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="purchaseorder_report_inherit_rama" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//table//thead/tr//th[@name='th_price_unit']" position="after">
+            <th name="th_disc">
+                <strong>Disc %</strong>
+            </th>
+            <th name="th_disc">
+                <strong>Disc unit price %</strong>
+            </th>
+        </xpath>
+        <xpath expr="//table//tbody/t/tr//t/td/span[@t-field='line.price_unit']" position="after">
+            <td class="text-right">
+                <span t-field="line.x_discount"/>
+            </td>
+            <td class="text-right">
+                <span t-field="line.x_discount_unit_price"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>
