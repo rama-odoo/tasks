@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_invoice_layout_custom">
+            <div t-attf-class="header o_company_#{company.id}_layout" style="font-size: 0.7rem !important;">
+                <div class="row">
+                    <div class="col-3 text-center">
+                        <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" alt="Company Logo"
+                        class="float-left mr-4" style="max-height:100px;"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <h5><strong t-field="o.company_id.partner_id.name"/></h5>
+                        <div t-field="o.company_id.partner_id" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': True, 'no_tag_br': True}"/>
+                        <div t-if="o.company_id.email">
+                            <strong>E-Mail:</strong>
+                            <span t-field="o.company_id.email"/>
+                        </div>
+                        <div t-if="o.company_id.phone">
+                            <strong>M:</strong>
+                            <span t-field="o.company_id.phone"/>
+                        </div>
+                        <div t-if="o.company_id.iec_code">
+                            <strong>IEC Code:</strong>
+                            <span t-field="o.company_id.iec_code"/>
+                        </div>
+                        <div t-if="o.company_id.vat">
+                            <strong>GSTIN:</strong>
+                            <span t-field="o.company_id.vat"/>
+                        </div>
+                        <div t-if="o.company_id.pan_no">
+                            <strong>PAN:</strong>
+                            <span t-field="o.company_id.pan_no"/>
+                        </div>
+                    </div>
+<!--                    <div class="col-3">-->
+<!--                        <t t-if="o.l10n_in_transaction_id.qr_code_data">-->
+<!--                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' %('QR', o.l10n_in_transaction_id.qr_code_data, 200, 200)"/>-->
+<!--                        </t>-->
+<!--                    </div>-->
+                </div>
+            </div>
+
+            <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <div>
+                    <!-- This div ensures that the address is not cropped by the header. -->
+                    <t t-call="web.address_layout"/>
+                </div>
+                <t t-raw="0"/>
+            </div>
+
+            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+                <div class="text-center" style="border-top: 1px solid black; font-size: 0.7rem !important;">
+                    <div class="text-muted">
+                        <div>SUBJECT TO ANKLESHWAR JURISDICTION</div>
+                        <div>This is Computer Generated Invoice.</div>
+                    </div>
+                    <!-- <div name="financial_infos">
+                        <span t-field="company.report_footer"/>
+                    </div>
+
+                    <div t-if="report_type == 'pdf'" class="text-muted">
+                        Page: <span class="page"/> / <span class="topage"/>
+                    </div> -->
+                </div>
+            </div>
+        </template>
+
+        <template id="external_invoice_layout" inherit_id="web.external_layout" primary="True">
+            <xpath expr="//t[@t-if='company.external_report_layout_id']" position="replace"/>
+            <xpath expr="//t[@t-else='else']" position="replace">
+                <t t-call="sgrl_account_custom.external_invoice_layout_custom">
+                    <t t-raw="0"/>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="report_tax_invoice_document">
+            <t t-call="sgrl_account_custom.external_invoice_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+
+                <div class="page" style="font-size: 0.7rem !important;">
+                    <t t-set="sale_ids" t-value="o.invoice_line_ids.mapped('sale_line_ids').mapped('order_id')"/>
+                    <table class="w-100" style="border:1px solid black; border-collapse:separate;">
+                        <tr>
+                            <td class="text-center p-2" colspan="3">
+                                <strong style="font-size: 1rem !important;">TAX INVOICE</strong>
+                                <div t-if="o.is_export" t-field="o.export_declaration"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black">
+                            <td class="pl-2" colspan="3">
+                                <span>IRN No :</span>
+                                <span t-field="o.l10n_in_transaction_id.irn"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pl-2" colspan="3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span>ACK No :</span>
+                                        <span t-field="o.l10n_in_transaction_id.ack_no"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <span>ACK Date :</span>
+                                        <span t-field="o.l10n_in_transaction_id.ack_date"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="border-top border-dark pl-1">
+                                <div class="row">
+                                    <div class="col-3">[] Original for Buyer</div>
+                                    <div class="col-3">[] Duplicate for Transporter</div>
+                                    <div class="col-3">[] Triplicate for Assess</div>
+                                    <div class="col-3">[] Extra Copy</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black">
+                            <td class="border-right border-dark pl-2 w-50">
+                                <strong>Consignee / Shipped to :</strong>
+                            </td>
+                            <td class="border-right border-dark pl-2">Invoice No.</td>
+                            <td class="pl-1">Invoice Date</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2" rowspan="4">
+                                <div t-field="o.company_id.partner_id"/>
+                                <div>
+                                    <span t-field="o.company_id.street"/>
+                                    <span t-field="o.company_id.street2" t-if="o.company_id.street2"/>
+                                </div>
+                                <div>
+                                    <span t-field="o.company_id.city"/>
+                                    <span t-field="o.company_id.zip"/>
+                                    <span t-field="o.company_id.state_id"/>
+                                    <span t-field="o.company_id.country_id"/>
+                                </div>
+                                <div>
+                                    <strong>State Name :</strong>
+                                    <strong t-field="o.company_id.partner_id.state_id"/>
+                                </div>
+                                <div>
+                                    <strong>State Code:</strong>
+                                    <strong t-field="o.company_id.partner_id.zip"/>
+                                </div>
+                            </td>
+                            <td class="border-right border-dark pl-2">
+                                <strong t-field="o.name"/>
+                            </td>
+                            <td class="pl-1">
+                                <strong t-field="o.invoice_date"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black pl-2">
+                            <td class="border-right border-dark pl-2">Eway Bill no.Date</td>
+                            <td class="pl-1">Sales Type</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <strong t-field="o.eway_bill"/>
+                            </td>
+                            <td class="pl-1">
+                                <strong t-field="o.fiscal_position_id"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black pl-2">
+                            <td class="border-right border-dark pl-2">
+                                <span>Buyer's Order No.</span>
+                                <p class="m-0">
+                                    <strong t-field="o.ref"/>
+                                </p>
+                            </td>
+                            <td class="pl-1">
+                                <span>Buyer Order Date</span>
+                                <p class="m-0">
+<!--                                    <strong t-if="sale_ids" t-esc="', '.join(map(lambda x: x.strftime('%Y-%m-%d'), sale_ids.filtered(lambda l: l.x_studio_customer_po_date).mapped('x_studio_customer_po_date')))" />-->
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black pl-2">
+                            <td class="border-right border-dark pl-2" rowspan="7">
+                                <strong>Buyer (Bill to) :</strong>
+                                <div t-field="o.partner_id"/>
+                                <div>
+                                    <span t-field="o.partner_id.street"/>
+                                    <span t-field="o.partner_id.street2" t-if="o.partner_id.street2"/>
+                                </div>
+                                <div>
+                                    <span t-field="o.partner_id.city"/>
+                                    <span t-field="o.partner_id.zip"/>
+                                    <span t-field="o.partner_id.state_id"/>
+                                    <span t-field="o.partner_id.country_id"/>
+                                </div>
+                                <div>
+                                    <strong>GSTIN No.</strong>
+                                    <strong t-field="o.partner_id.vat"/>
+                                </div>
+                                <div>
+                                    <strong>State Name :</strong>
+                                    <strong t-field="o.partner_id.state_id"/>
+                                </div>
+                                <div>
+                                    <strong>State Code :</strong>
+                                    <strong t-field="o.partner_id.zip"/>
+                                </div>
+                            </td>
+                            <td class="border-right border-dark pl-2">System/Sales Order No. Date.</td>
+                            <td class="pl-1">Motor Vehicle No.</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <strong t-if="sale_ids" t-esc=" ', '.join(sale_ids.mapped('name'))"/>
+                                <t t-foreach="sale_ids" t-as="sl">
+                                    <strong t-field="sl.date_order" t-options="{'widget': 'date'}"/>
+                                </t>
+                            </td>
+                            <td class="pl-1">
+                                <strong t-field="o.motor_vehicle_no"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black pl-2">
+                            <td class="border-right border-dark pl-2">Mode/Payment Terms</td>
+                            <td class="pl-1">LR No. &amp; Date</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <strong t-field="o.invoice_payment_term_id"/>
+                            </td>
+<!--                            <td class="pl-1">-->
+<!--                                <strong t-field="o.lr_number"/>-->
+<!--                                <strong t-field="o.lr_date"/>-->
+<!--                            </td>-->
+                        </tr>
+                        <tr class="border-bottom border-black pl-2">
+                            <td class="border-right border-dark pl-2">Dispatch Through/Carrier Name</td>
+                            <td class="pl-1">Destination / Port Name:</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <strong t-field="o.dispatch_throug"/>
+                            </td>
+                            <td class="pl-1">
+                                <strong t-field="o.destination"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black">
+                            <td class="border-right border-dark pl-2">
+                                <span>Terms of Delivery</span>
+                                <strong>
+                                    <div t-field="o.terms_of_delivery"/>
+                                </strong>
+                            </td>
+                            <td>
+                                <span>Incoterm</span>
+                                <strong>
+                                    <div t-esc="', '.join(sale_ids.mapped('incoterm.name'))"/>
+                                </strong>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="text-center w-100 border border-dark">
+                        <thead>
+                            <tr class="border-bottom border-black">
+                                <th name="th_sr_no" class="border-right border-dark">
+                                    <span class="pl-2">Sr. No</span>
+                                </th>
+                                <th name="th_description" class="border-right border-dark">
+                                    <span class="pl-2">Description of Goods</span>
+                                </th>
+                                <th name="th_hsn" class="border-right border-dark">
+                                    <span class="pl-2">HSN/SAC</span>
+                                </th>
+                                <th name="th_hsn_rate" class="border-right border-dark">
+                                    <span class="pl-2">GST (%)</span>
+                                </th>
+                                <th name="th_qty" class="border-right border-dark">
+                                    <span class="pl-2">Quantity</span>
+                                </th>
+                                <th name="th_rate" class="border-right border-dark">
+                                    <span class="pl-2">Rate</span>
+                                </th>
+                                <th name="th_per" class="border-right border-dark">
+                                    <span class="pl-2">Per</span>
+                                </th>
+                                <th name="th_amount" class="text-center">
+                                    <span class="pl-2">Amount</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tax_invoice_tbody">
+                            <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+
+                            <t t-set="without_service_lines" t-value="lines.filtered(lambda l: l.product_id.type != 'service')"/>
+                            <t t-foreach="without_service_lines" t-as="line">
+                                <tr class="border-black border-bottam border-black">
+                                    <t t-if="not line.display_type" name="account_invoice_line_accountable">
+                                        <td class="border-right border-dark text-center">
+                                            <t t-esc="line_index +1"/>
+                                        </td>
+                                        <td class="border-right border-dark text-left pl-2" name="account_invoice_line_name">
+                                            <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                            <t t-set="move_line_ids" t-value="line.sale_line_ids.mapped('move_ids').mapped('move_line_ids')"/>
+
+                                            <t t-if="move_line_ids">
+                                                <t t-set="pack_type" t-value="move_line_ids.filtered(lambda l: l.x_packing_type_id).mapped('x_packing_type_id')"/>
+                                                <t t-set="batch_ids" t-value="move_line_ids.filtered(lambda l: l.lot_id).mapped('lot_id')"/>
+
+                                                <div t-if="pack_type">
+                                                    Pack Type: <span t-esc="', '.join(pack_type.mapped('name'))"/>
+                                                </div>
+                                                <div t-if="batch_ids">
+                                                    Batch No.: <span t-esc="', '.join(batch_ids.mapped('name'))"/>
+                                                </div>
+                                            </t>
+                                        </td>
+                                        <td class="border-right border-dark text-center">
+                                            <span t-field="line.product_id.l10n_in_hsn_code"/>
+                                        </td>
+                                        <td t-attf-class="border-right border-dark {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" style="text-align:center;">
+                                            <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>
+                                        </td>
+                                        <td class="border-right border-dark text-center">
+                                            <span t-field="line.quantity"/>
+                                        </td>
+                                        <td class="border-right border-dark text-center">
+                                            <span class="text-nowrap" t-field="line.price_unit" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </td>
+                                        <td class="border-right border-dark pl-2">
+                                            <span t-field="line.product_uom_id" groups="uom.group_uom"/>
+                                        </td>
+                                        <td class="text-right o_price_total">
+                                            <span class="text-nowrap pr-2" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                            <span class="text-nowrap pr-2" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <t t-if="len(without_service_lines) &lt; 10">
+                                <tr t-foreach="range(0, 10-len(without_service_lines))" t-as="l">
+                                    <td class="border-right border-dark p-3"></td>
+                                    <td class="border-right border-dark p-3"></td>
+                                    <td class="border-right border-dark p-3"></td>
+                                    <td class="border-right border-dark p-3"></td>
+                                    <td class="border-right border-dark p-3"></td>
+                                    <td class="border-right border-dark p-3"></td>
+                                    <td class="border-right border-dark p-3"></td>
+                                    <td class="p-3"></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <table class="w-100">
+                        <tr>
+                            <td class="border border-dark">
+                                <span>Remarks</span>
+                                <div t-field="o.narration"/>
+                            </td>
+                            <td class="border border-dark" style="width: 35%">
+                                <t t-set="service_lines" t-value="lines.filtered(lambda l: l.product_id.type == 'service')"/>
+                                <table class="w-100">
+                                    <tr>
+                                        <td class="pl-2">Assessable Value</td>
+                                        <td class="text-right pr-2">
+                                            <span t-esc="o.amount_untaxed - sum(service_lines.mapped('price_subtotal'))" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="service_lines" t-as="line">
+                                        <td class="pl-2">
+                                            <span t-field="line.product_id"/>
+                                        </td>
+                                        <td class="text-right o_price_total pr-2">
+                                            <span t-field="line.price_total"/>
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                        <tr style="">
+                                            <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) in [0, 1] and float_compare(o.amount_untaxed, amount_by_group[2], precision_rounding=o.currency_id.rounding) == 0">
+                                                <td class="pl-2">
+                                                    <span class="text-nowrap" t-esc="amount_by_group[0]"/>
+                                                </td>
+                                                <td class="text-right o_price_total pr-2">
+                                                    <span class="text-nowrap" t-esc="amount_by_group[3]"/>
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td class="pl-2">
+                                                    <span t-esc="amount_by_group[0]"/>
+                                                    <!-- <span class="text-nowrap">on
+                                                        <t t-esc="amount_by_group[4]"/>
+                                                    </span> -->
+                                                </td>
+                                                <td class="text-right o_price_total pr-2">
+                                                    <span class="text-nowrap" t-esc="amount_by_group[3]"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td class="pl-2">Total Tax Amount</td>
+                                        <td class="text-right pr-2">
+                                            <span t-field="o.amount_tax"/>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td class="pl-2">Total Amount</td>
+                                        <td class="text-right pr-2">
+                                            <span t-field="o.amount_residual"/>
+                                        </td>
+                                    </tr> -->
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-dark pl-2">
+                                <strong>Total Amount in Words:</strong>
+                                <span t-esc="o.currency_id.with_context(lang=o.partner_id.lang).amount_to_text(o.amount_total)"/>
+                                <br/>
+                                <strong>Taxable Amount in Words:</strong>
+                                <span t-esc="o.currency_id.with_context(lang=o.partner_id.lang).amount_to_text(o.amount_tax)"/>
+                            </td>
+                            <td class="border border-dark">
+                                <table class="w-100">
+                                    <tr>
+                                        <td class="pl-2">
+                                            <strong>Grand Total</strong>
+                                        </td>
+                                        <td class="text-right pr-2">
+                                            <span t-field="o.amount_residual"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="w-100" style="border: 1px solid black;page-break-inside: avoid;">
+                        <tr>
+                            <td class="pl-1">
+                                <strong>Terms Conditions :</strong>
+                                <div t-field="o.company_id.incoterm_id"/>
+                                <strong class="mt-4">
+                                    Company's Bank Detail<br/>
+                                    Bank Name: DBS Bank India Limited.<br/>
+                                    A/C No.23456789000023<br/>
+                                    Branch : Surat<br/>
+                                    Address : Shop NO 7, Shlok Business Center, Udhana Darwaja, Ring Road, Surat 395002<br/>
+                                    IFSC Code: DBSS0IN0831<br/>
+                                    SWIFT Code: DBSSINBB<br/>
+                                </strong>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="w-100" style="border: 1px solid black;border-collapse:separate; page-break-inside: avoid;">
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <strong>Declaration :</strong>
+                                <strong class="pl-2">We declare that this Invoice shows the actual price of the goods<br/>described and that all particulars are true and correct.</strong>
+                            </td>
+                            <td class="text-right pr-2" style="width: 40%;">
+                                <strong>For, <span t-field="o.company_id"/></strong>
+                                <br/>
+                                <p class="mt-5"><strong>Authorised Signatory</strong></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_tax_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.partner_id.lang if o.partner_id and o.partner_id.lang else o.invoice_user_id.sudo().lang"/>
+                    <t t-call="sgrl_account_custom.report_tax_invoice_document" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="field_x_pf_no" model="ir.model.fields">
+        <field name="name">x_pf_no</field>
+        <field name="field_description">PF No.</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="ttype">char</field>
+    </record>
+    <record id="field_x_fpf_no" model="ir.model.fields">
+        <field name="name">x_fpf_no</field>
+        <field name="field_description">FPF No.</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="ttype">char</field>
+    </record>
+</odoo>

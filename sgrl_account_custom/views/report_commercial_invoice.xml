@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="commercial_invoice_report">
+            <t t-call="sgrl_account_custom.external_invoice_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <div class="page" style="font-size: 0.7rem !important;">
+                    <table class="w-100" style="border:1px solid black; border-collapse:separate;">
+                        <tr>
+                            <td class="border-bottom border-black text-center p-2" colspan="4">
+                                <strong style="font-size: 1rem !important;">COMMERCIAL INVOICE</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pl-2">[] Duplicate</td>
+                            <td>[] Original</td>
+                            <td>[] Triplicate</td>
+                            <td>[] Copy of Transport</td>
+                        </tr>
+                    </table>
+                    <t t-set="sale_ids" t-value="o.invoice_line_ids.mapped('sale_line_ids').mapped('order_id')"/>
+                    <table class="w-100 pl-2" style="border:1px solid black;border-collapse:separate;">
+                        <tr>
+                            <td class="border-right border-dark">
+                                <div t-if="commercial_invoice">
+                                    <strong>Consignee:</strong>
+                                    <strong>To The Order Of</strong>
+                                </div>
+                                <div t-if="customer_commercial_invoice">
+                                    <strong>Delivery Address:</strong>
+                                </div>
+                            </td>
+                            <td class="border-right border-dark pl-2">
+                                <span>Invoice No.</span>
+                            </td>
+                            <td class="pl-2">
+                                <span>Invoice Date</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2" rowspan="2">
+                                <t t-if="customer_commercial_invoice">
+                                    <!--                                    <div t-field="o.notify" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true, 'no_tag_br': True}"/>-->
+                                    <div t-field="o.notify.name"/>
+                                    <div>
+                                        <span t-field="o.notify.street"/>
+                                        <span t-field="o.notify.street2" t-if="o.notify.street2"/>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.notify.city"/>
+                                        <span t-field="o.notify.zip"/>
+                                        <span t-field="o.notify.state_id"/>
+                                        <span t-field="o.notify.country_id"/>
+                                    </div>
+                                    <div>
+                                        <strong>GSTIN:</strong>
+                                        <span class="pl-2" t-field="o.partner_shipping_id.vat"/>
+                                    </div>
+                                    <div>
+                                        <strong>State Name :</strong>
+                                        <span class="pl-2" t-field="o.partner_shipping_id.country_id"/>
+                                    </div>
+                                    <div>
+                                        <strong>State Code:</strong>
+                                        <span class="pl-2" t-field="o.partner_shipping_id.zip"/>
+                                    </div>
+                                </t>
+                            </td>
+                            <td class="border-right border-dark pl-2">
+                                <span t-field="o.name"/>
+                            </td>
+                            <td class="pl-2">
+                                <span t-field="o.invoice_date"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black">
+                            <td class="border-right border-dark pl-2">
+                                <span>Buyer's Order No.</span>
+                                <div><strong t-field="o.ref"/></div>
+                            </td>
+                            <td class="pl-2">
+                                <span>Buyer Order Date</span>
+                                <div t-if="sale_ids">
+<!--                                    <strong t-esc="sale_ids[0].x_studio_customer_po_date"/>-->
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- <tr class="border-bottom border-black pl-2">
+                            <td class="border-right border-dark pl-2">Sales Order No.</td>
+                            <td class="pl-2">SGRL IEC Code:</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <div t-if="sale_ids">
+                                    <strong t-esc="sale_ids[0].name"/>
+                                </div>
+                            </td>
+                            <td class="pl-2">
+                                <strong>3405004454</strong>
+                            </td>
+                        </tr> -->
+                        <tr class="border-black" style="border-bottom: 1px solid black">
+                            <td class="border-right border-dark pl-2">
+                                <strong>Buyer Other than Consignee :</strong>
+                            </td>
+                            <td class="border-right border-dark pl-2">Mode/Payment Terms</td>
+                            <td class="pl-2">Mode of Transport</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2" rowspan="7">
+                                <!--                                <div t-field="o.partner_id" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true}"/>-->
+                                <div t-field="o.partner_id.name"/>
+                                <div>
+                                    <span t-field="o.partner_id.street"/>
+                                    <span t-field="o.partner_id.street2" t-if="o.partner_id.street2"/>
+                                </div>
+                                <div>
+                                    <span t-field="o.partner_id.city"/>
+                                    <span t-field="o.partner_id.zip"/>
+                                    <span t-field="o.partner_id.state_id"/>
+                                    <span t-field="o.partner_id.country_id"/>
+                                </div>
+                                <div>
+                                    <strong>GSTIN No.</strong>
+                                    <span t-field="o.partner_id.vat"/>
+                                </div>
+                                <div>
+                                    <strong>State Name :</strong>
+                                    <span t-field="o.partner_id.country_id"/>
+                                </div>
+                                <div>
+                                    <strong>State Code :</strong>
+                                    <span t-field="o.partner_id.zip"/>
+                                </div>
+                            </td>
+                            <td class="border-right border-dark pl-2">
+                                <span t-field="o.invoice_payment_term_id"/>
+                            </td>
+                            <td class="pl-2">
+                                <span t-field="o.invoice_incoterm_id"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black">
+                            <td class="border-right border-dark pl-2">Country of Origin</td>
+                            <td class="pl-2">Country of Final Destination</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">INDIA</td>
+                            <td class="pl-2">
+                                <span t-field="o.destination"/>
+                            </td>
+                        </tr>
+                        <tr class="border-bottom border-black">
+                            <td class="border-right border-dark pl-2">
+                                Loading Destination/Port Name
+                            </td>
+                            <td class="pl-2">
+                                Delivery Destination/Port Name:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <span t-field="o.loading_destination"/>
+                            </td>
+                            <td class="pl-2">
+                                <span t-field="o.delivery_destination"/>
+                            </td>
+                        </tr>
+                        <tr class="border-black" style="border-bottom: 1px solid black">
+                            <td class="border-right border-dark pl-2">Terms of Delivery</td>
+                            <td class="pl-2">Pre- Carriage By</td>
+                        </tr>
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <span t-field="o.invoice_incoterm_id"/>
+                            </td>
+                            <td class="pl-2">
+                                <span t-field="o.pre_carriage_by"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="w-100" style="border-left: 1px solid black;border-collapse:separate;">
+                        <tr class="text-center pl-2">
+                            <th class="border-right border-dark pl-2">
+                                <strong>Sr. No</strong>
+                            </th>
+                            <th class="border-right border-dark pl-2">
+                                <strong>Description of Goods</strong>
+                            </th>
+                            <th class="border-right border-dark pl-2">
+                                <strong>Packaging Type</strong>
+                            </th>
+                            <th class="border-right border-dark pl-2">
+                                <strong>Batch No. Markings</strong>
+                            </th>
+                            <th class="border-right border-dark pl-2">
+                                <strong>Quantity (kgs)</strong>
+                            </th>
+                            <th class="border-right border-dark pl-2">
+                                <strong>
+                                    Rate
+                                    ( <span t-field="o.currency_id.symbol"/>)
+                                </strong>
+                            </th>
+                            <th class="border-right border-dark pl-2">
+                                <strong>Per</strong>
+                            </th>
+                            <th class="border-right border-dark pl-2">
+                                <strong>
+                                    Amount
+                                    ( <span t-field="o.currency_id.symbol"/> )
+                                </strong>
+                            </th>
+                        </tr>
+                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                        <t t-foreach="lines" t-as="line">
+                            <tr class="border-bottom border-dark">
+                                <t t-if="not line.display_type" style="padding:4px;" name="account_invoice_line_accountable">
+                                    <td class="border-right border-dark pl-2 text-center">
+                                        <t t-esc="line_index + 1"/>
+                                    </td>
+                                    <td class="border-right border-dark pl-2" name="account_invoice_line_name">
+                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>
+<!--                                        <div t-if="line.product_id.x_studio_cas_number">-->
+                                            <strong>CAS No.</strong>
+<!--                                            <span t-field="line.product_id.x_studio_cas_number"/>-->
+<!--                                        </div>-->
+                                        <div t-if="line.product_id.l10n_in_hsn_code">
+                                            <strong>HSN Code.</strong>
+                                            <span t-field="line.product_id.l10n_in_hsn_code"/>
+                                        </div>
+                                    </td>
+                                    <td class="border-right border-dark">
+                                        <!-- <span t-field="o.stock_move_id.product_id.stock_quant_ids.package_id.packaging_id"/> -->
+                                        <span t-field="line.packing_type"/>
+                                    </td>
+                                    <td class="border-right border-dark pr-2">
+                                        <!-- <span t-field="o.stock_move_id.lot_ids"/> -->
+                                        <span t-field="line.batch_marking"/>
+                                    </td>
+                                    <td class="border-right border-dark pl-2">
+                                        <div class="text-left" t-field="line.quantity"/>
+                                    </td>
+                                    <td class="border-right border-dark pr-2">
+                                        <div class="text-right" t-field="line.price_unit"/>
+                                    </td>
+                                    <td class="border-right border-dark pr-2">
+                                        <div class="text-right" t-field="line.product_uom_id" groups="uom.group_uom"/>
+                                    </td>
+                                    <td class="border-black o_price_total pl-2 border-right border-dark">
+                                        <div class="text-right pr-2" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                        <div class="text-right pr-2" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+                        <tr t-if="len(lines) &lt; 10" t-foreach="range(0, 10-len(lines))" t-as="l">
+                            <td class="border-right border-dark p-3"></td>
+                            <td class="border-right border-dark p-3"></td>
+                            <td class="border-right border-dark p-3"></td>
+                            <td class="border-right border-dark p-3"></td>
+                            <td class="border-right border-dark p-3"></td>
+                            <td class="border-right border-dark p-3"></td>
+                            <td class="border-right border-dark p-3"></td>
+                            <td class="border-right border-dark p-3"></td>
+                        </tr>
+                        <!-- <tr class="border-bottom border-black">
+                            <td class="border-right border-dark"/>
+                            <td class="border-right border-dark pl-2" colspan="1">
+                                <strong>TOTAL No of Pallets</strong>
+                            </td>
+                            <td class="border-right border-dark pl-2">
+                                <strong>(Total no of pallets)</strong>
+                            </td>
+                            <td class="border-right border-dark pl-2" colspan="1">
+                                <div class="text-left">Gross Wt.:</div>
+                                <div class="text-left" t-field="o.gross_wight"/>
+                            </td>
+                            <td class="border-right border-dark pl-2" colspan="1">
+                                <div class="text-left">Net Wt.:</div>
+                                <div class="text-left pr-2" t-field="o.net_wight"/>
+                            </td>
+                            <td class="border-right border-dark pl-2"/>
+                            <td class="border-right border-dark pr-2">
+                                <strong>TOTAL</strong>
+                            </td>
+                            <td class="border-right border-dark pl-2">
+                                <div class="text-right pr-2" t-field="o.amount_residual"/>
+                            </td>
+                        </tr> -->
+                        <tr class="border-black" style="border-right: 1px solid black">
+                            <td class="border-right border-dark pl-2" colspan="6">
+                                <strong>Total In Word :</strong>
+                                <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>
+                            </td>
+                            <td class="border-right border-dark pl-2">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="border-right border-dark text-right pr-2">
+                                <div t-field="o.amount_untaxed" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                <div t-field="o.amount_total" groups="account.group_show_line_subtotals_tax_included"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="w-100" style="border: 1px solid black; border-collapse:separate; page-break-inside: avoid;">
+                        <tr>
+                            <td class="border-right border-dark pl-2">
+                                <div t-if="commercial_invoice">
+                                    <strong>Notify Party_1: (<span t-field="o.notify"/>):
+                                    </strong>
+                                    <div t-field="o.notify" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                                    <!--<div>
+                                        <strong>VAT NO:</strong>
+                                        <span t-field="o.notify.vat"/>
+                                    </div> -->
+                                </div>
+                                <div>Gross Wt. will be the Weight for Shipping from other info section in delivery orders
+                                </div>
+                            </td>
+                            <td class="pl-2" style="width: 40%;">
+                                <strong>CONTAINER DETAILS:</strong>
+                                <div>
+                                    <strong>CONTAINER NO:</strong>
+                                    <span t-field="o.container_no"/>
+                                </div>
+                                <div>
+                                    <strong>CONT.SEAL NO:</strong>
+                                    <span t-field="o.cont_seal_no"/>
+                                </div>
+                                <div>
+                                    <strong>RFID SEAL NO:</strong>
+                                    <span t-field="o.rfid_seal_no"/>
+                                </div>
+                                <div t-if="commercial_invoice">
+                                    <div>
+                                        <strong>FREIGHT:</strong>
+                                        <span t-field="o.freight"/>
+                                    </div>
+                                    <div>
+                                        <strong>INSURANCE: Euro</strong>
+                                        <span t-field="o.insurance"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="pl-2 w-100" style="border: 1px solid black;border-collapse:separate;page-break-inside: avoid;">
+                        <tr t-if="commercial_invoice"  class="border-bottom border-black">
+                            <td colspan="2">
+                                <strong>Shipment Under:</strong>
+                                <span t-field="o.export_under"/>
+                                <strong>Beneficiary:</strong>
+                                <span t-field="o.beneficiary"/>
+                            </td>
+                        </tr>
+                        <tr t-if="commercial_invoice" class="border-bottom border-black">
+                            <td colspan="2">
+                                <strong>Export info from the text field. This is to be manual written in the other info section</strong>
+                                <span t-field="o.export_info"/>
+                            </td>
+                        </tr>
+                        <tr class="border-black" style="border-bottom: 1px solid black; page-break-inside: avoid;">
+                            <td colspan="2">
+                                <strong>
+                                    <div>Company's Bank Detail:</div>
+                                    <div>Bank Name:
+                                        <span t-field="o.partner_bank_id.bank_id"/>
+                                    </div>
+                                    <div>Branch: SURAT</div>
+                                    <div>Address: Shop No 7, Shlok Business Centre, Udhana Darwaja, Ring Road, Surat 395002.</div>
+                                    <div>IFSC Code:
+                                        <span t-field="o.partner_bank_id.ifsc_code"/>
+                                    </div>
+                                    <div>SWIFT Code: DBSSINBB</div>
+                                    <div>AD Code: <span t-field="o.partner_bank_id.ad_code"/></div>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr class="border-black" style="border-bottom: 1px solid black; page-break-inside: avoid;">
+                            <td class="border-right border-dark">
+                                <strong>
+                                    <span>Declaration :</span>
+                                    <br/>
+                                    <span>We declare that this Invoice shows the actual price of the goods described and that all particulars are true and correct.</span>
+                                </strong>
+                            </td>
+                            <td style="width: 40%;">
+                                <div class="text-right pr-2">
+                                    <strong>For, <span t-field="o.company_id"/></strong>
+                                    <br/>
+                                    <div class="mt-5"><strong>Authorised Signatory</strong></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <template id="commercial_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.partner_id.lang if o.partner_id and o.partner_id.lang else o.invoice_user_id.sudo().lang"/>
+                    <t t-set="commercial_invoice" t-value="1"/>
+                    <t t-call="sgrl_account_custom.commercial_invoice_report" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+
+        <template id="customer_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.partner_id.lang"/>
+                    <t t-set="customer_commercial_invoice" t-value="1"/>
+                    <t t-call="sgrl_account_custom.commercial_invoice_report" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

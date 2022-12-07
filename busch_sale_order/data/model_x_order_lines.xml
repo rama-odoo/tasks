@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--custom model-->
+    <record id="model_x_order_lines" model="ir.model">
+        <field name="is_mail_thread" eval="False"/>
+        <field name="name">order lines</field>
+        <field name="model">x_order_lines</field>
+        <field name="state">manual</field>
+        <field name="transient" eval="True"/>
+    </record>
+</odoo>
+

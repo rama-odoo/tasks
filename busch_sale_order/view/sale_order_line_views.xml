@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--custom field attach in sale order line-->
+    <record id="view_order_form_inherit_busch_sale_order" model="ir.ui.view">
+        <field name="name">view.order.form.inherit.busch.sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='order_lines'] //tree/field[@name='product_uom']" position='after'>
+                <field name="x_on_time_delivery" optional="hide"/>
+                <field name="x_is_promise_request" optional="hide"/>
+                <field name="x_delay_days" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

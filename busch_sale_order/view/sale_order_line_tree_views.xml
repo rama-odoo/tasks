@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- custom field attach in sale order -->
+    <record id="sale_order_line_tree_views" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.views</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page string="OTD Details">
+                    <field name="x_sale_line_ids">
+                        <tree editable="bottom">
+                            <field name="x_sequence"/>
+                            <field name="x_internal_reference"/>
+                            <field name="x_confirmed_delivery_date"/>
+                            <field name="x_sys_date" eval="(DateTime.today() + relativedelta(days=1))"/>
+                            <field name="x_user_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

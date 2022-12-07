@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="payslip_report_template" inherit_id='hr_payroll.report_payslip'>
+        <xpath expr="//table[@name='employee-infos']" position="inside">
+            <div>
+                <tr>
+                    <td class="w-25">
+                        <strong>Gender</strong>
+                    </td>
+                    <td class="w-25">
+                        <strong>Employee Id No</strong>
+                    </td>
+                    <td class="w-25">
+                        <strong>Bank Name</strong>
+                    </td>
+                    <td class="w-25">
+                        <strong>Bank A/C No</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="w-25">
+                        <span t-field="o.employee_id.gender"/>
+                    </td>
+                    <td class="w-25">
+                        <span t-field="o.employee_id.registration_number"/>
+                    </td>
+                    <td class="w-25">
+                        <span t-field="o.employee_id.bank_account_id.bank_id.name"/>
+                    </td>
+                    <td class="w-25">
+                        <span t-field="o.employee_id.bank_account_id"/>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td class="w-25">
+                        <strong>IFSE Code</strong>
+                    </td>
+                    <td class="w-25">
+                        <strong>PF No</strong>
+                    </td>
+                    <td class="w-25">
+                        <strong>FPF No</strong>
+                    </td>
+                    <td class="w-25">
+                        <strong>Working Days</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="w-25">
+                        <span t-field="o.employee_id.bank_account_id.bank_id.bic"/>
+                    </td>
+                    <td class="w-25">
+                        <span t-field="o.employee_id.x_pf_no"/>
+                    </td>
+                    <td class="w-25">
+                        <span t-field="o.employee_id.x_fpf_no"/>
+                    </td>
+                    <td class="w-25">
+                         <t t-foreach="o.worked_days_line_ids" t-as="worked_days">
+                            <t t-if="worked_days.code != 'OUT'">
+                                <span t-field="worked_days.number_of_days"/>
+                            </t>
+                        </t>
+                    </td>
+                </tr>
+            </div>
+        </xpath>
+    </template>
+</odoo>

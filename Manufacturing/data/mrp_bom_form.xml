@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="field_x_customer" model="ir.model.fields">
+        <field name="name">x_customer</field>
+        <field name="field_description">Customer</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">res.partner</field>
+    </record>
+
+    <record id="field_x_equipment" model="ir.model.fields">
+        <field name="name">x_equipment</field>
+        <field name="field_description">Equipment Code</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="ttype">char</field>
+    </record>
+
+    <record id="field_x_prepared_by" model="ir.model.fields">
+        <field name="name">x_prepared_by</field>
+        <field name="field_description">Prepared By</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">res.users</field>
+    </record>
+
+    <record id="field_x_checked_by" model="ir.model.fields">
+        <field name="name">x_checked_by</field>
+        <field name="field_description">Checked By</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">res.users</field>
+    </record>
+
+    <record id="field_x_revision" model="ir.model.fields">
+        <field name="name">x_revision</field>
+        <field name="field_description">Revision</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="ttype">char</field>
+    </record>
+
+    <record id="field_x_bom_no" model="ir.model.fields">
+        <field name="name">x_bom_no</field>
+        <field name="field_description">Bom No</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="ttype">char</field>
+    </record>
+
+    <record id="field_x_date" model="ir.model.fields">
+        <field name="name">x_date</field>
+        <field name="field_description">Date</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="ttype">date</field>
+    </record>
+
+
+</odoo>

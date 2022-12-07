@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--custom fields attach in custom model-->
+    <record id="field_x_lines" model="ir.model.fields">
+        <field name="name">x_order_id</field>
+        <field name="field_description">Order lines</field>
+        <field name="model_id" ref="busch_sale_order.model_x_order_lines"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">sale.order</field>
+        <field name="required" eval="False"/>
+    </record>
+    <record id="field_x_sale_line" model="ir.model.fields">
+        <field name="name">x_sale_line_ids</field>
+        <field name="field_description">sale</field>
+        <field name="ttype">one2many</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="relation">x_order_lines</field>
+        <field name="relation_field">x_order_id</field>
+    </record>
+    <record id="field_x_sequence_id" model="ir.model.fields">
+        <field name="name">x_sequence</field>
+        <field name="field_description">Line NO.</field>
+        <field name="ttype">integer</field>
+        <field name="model_id" ref="busch_sale_order.model_x_order_lines"/>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_internal_reference" model="ir.model.fields">
+        <field name="name">x_internal_reference</field>
+        <field name="field_description">Internal Reference</field>
+        <field name="ttype">char</field>
+        <field name="model_id" ref="busch_sale_order.model_x_order_lines"/>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_confirmed_delivery_date" model="ir.model.fields">
+        <field name="name">x_confirmed_delivery_date</field>
+        <field name="field_description">Confirmed Delivery Date</field>
+        <field name="ttype">datetime</field>
+        <field name="model_id" ref="busch_sale_order.model_x_order_lines"/>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_sys_date" model="ir.model.fields">
+        <field name="name">x_sys_date</field>
+        <field name="field_description">Change Date</field>
+        <field name="ttype">date</field>
+        <field name="model_id" ref="busch_sale_order.model_x_order_lines"/>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_user_id" model="ir.model.fields">
+        <field name="name">x_user_id</field>
+        <field name="field_description">User</field>
+        <field name="ttype">char</field>
+        <field name="model_id" ref="busch_sale_order.model_x_order_lines"/>
+        <field name="readonly" eval="True"/>
+    </record>
+     <record id="field_x_sale_line_id" model="ir.model.fields">
+        <field name="name">x_sale_line_id</field>
+        <field name="field_description">Sale Order Line</field>
+        <field name="ttype">many2one</field>
+        <field name="model_id" ref="busch_sale_order.model_x_order_lines"/>
+        <field name="relation">sale.order.line</field>
+        <field name="readonly" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- custom field attach in sale order line-->
+    <record id="field_x_on_time_delivery" model="ir.model.fields">
+        <field name="name">x_on_time_delivery</field>
+        <field name="field_description">On Time Delivery</field>
+        <field name="ttype">integer</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="readonly" eval="True"/>
+    </record>
+    <!-- <record id="busch_sale_order.field_x_on_time_delivery" model="ir.model.fields">
+        <field name="depends">x_studio_delivery_date,invoice_lines.move_id.invoice_date</field>
+        <field name="compute">
+for line in self:
+    if line.invoice_lines.move_id:
+      invoice = line.invoice_lines.move_id[0]
+      inv = invoice.invoice_date
+      line['x_on_time_delivery'] = line.x_studio_delivery_date and inv and inv &lt;= line.x_studio_delivery_date and 1 or 0
+   </field>
+    </record>-->  
+      <record id="field_x_is_promise_request" model="ir.model.fields">
+        <field name="name">x_is_promise_request</field>
+        <field name="field_description">Promise Request</field>
+        <field name="ttype">integer</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="readonly" eval="True"/>
+    </record>
+    <!-- <record id="busch_sale_order.field_x_is_promise_request" model="ir.model.fields">
+        <field name="depends">x_studio_delivery_date,x_studio_requested_date</field>
+        <field name="compute">
+for line in self:
+    is_promise_request = 0
+    if line.x_studio_requested_date and line.x_studio_delivery_date and line.x_studio_delivery_date &lt;= line.x_studio_requested_date:
+        is_promise_request = 1
+    line['x_is_promise_request'] = is_promise_request
+        </field>
+    </record> -->
+    <record id="field_x_delay_days" model="ir.model.fields">
+        <field name="name">x_delay_days</field>
+        <field name="field_description">Delay Days</field>
+        <field name="ttype">integer</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="readonly" eval="True"/>
+    </record>
+    <!-- <record id="busch_sale_order.field_x_delay_days" model="ir.model.fields">
+        <field name="depends">invoice_lines.move_id.invoice_date,x_studio_delivery_date,x_on_time_delivery</field>
+        <field name="compute">
+for line in self:
+    days = 0
+    if line.x_on_time_delivery == 1:
+      days = 0
+    elif not line.x_is_promise_request and line.invoice_lines.move_id.invoice_date and line.x_studio_delivery_date:
+        days = ((line.invoice_lines.move_id.invoice_date - line.x_studio_delivery_date).days)
+    line['x_delay_days'] = abs(days)
+        </field>
+    </record> -->
+    <record id="field_x_date_order" model="ir.model.fields">
+        <field name="name">x_date_order</field>
+        <field name="field_description">Order Date</field>
+        <field name="ttype">datetime</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="related">order_id.date_order</field>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_client_order_ref" model="ir.model.fields">
+        <field name="name">x_client_order_ref</field>
+        <field name="field_description">Customer Po No</field>
+        <field name="ttype">char</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="related">order_id.client_order_ref</field>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_invoice_no" model="ir.model.fields">
+        <field name="name">x_invoice_no</field>
+        <field name="field_description">Invoice No</field>
+        <field name="ttype">char</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="related">invoice_lines.move_id.name</field>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_invoice_date" model="ir.model.fields">
+        <field name="name">x_invoice_date</field>
+        <field name="field_description">Invoice Date</field>
+        <field name="ttype">date</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="related">invoice_lines.move_id.invoice_date</field>
+        <field name="readonly" eval="True"/>
+    </record>
+    <record id="field_x_default_code" model="ir.model.fields">
+        <field name="name">x_default_code</field>
+        <field name="field_description">Item No</field>
+        <field name="ttype">char</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="related">product_id.default_code</field>
+        <field name="readonly" eval="True"/>
+    </record>
+    <!-- <record id="field_x_commitment_date" model="ir.model.fields">
+        <field name="name">x_commitment_date</field>
+        <field name="field_description">delivery date</field>
+        <field name="ttype">date</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="related">x_studio_delivery_date</field>
+        <field name="readonly" eval="True"/>
+    </record> -->
+   <!--  <record id="field_x_sequence_no" model="ir.model.fields">
+        <field name="name">x_sequence_no</field>
+        <field name="field_description">sequence no</field>
+        <field name="ttype">integer</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="related">x_sale_order_line_sequence</field>
+        <field name="readonly" eval="True"/>
+    </record> -->
+</odoo>
