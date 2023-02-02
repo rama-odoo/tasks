@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="field_x_terms_and_conditions_rayzon_proforma_print_format" model="ir.model.fields">
+        <field name="name">x_terms_and_conditions</field>
+        <field name="field_description">Terms and Condition</field>
+        <field name="model_id" ref="rayzon_proforma_print_format.model_x_sale_term"/>
+        <field name="ttype">html</field>
+        <field name="required" eval="True"/>
+        <field name="readonly" eval="False"/>
+        <field name="store" eval="True"/>
+        <field name="copied" eval="False"/>
+    </record>
+</odoo>
