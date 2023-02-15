@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="account_invoice_custom_report_rama" inherit_id="account.report_invoice_document">
+        <xpath expr="//thead//tr/th[@name='th_description']" position="before">
+            <th name="th_ar_no" class="text-center">Sr no</th>
+        </xpath>
+
+        <xpath expr="//table[hasclass('table','table-sm','o_main_table')]//tbody/t[@t-set='lines']"
+               position="after">
+            <t t-set="ar_no" t-value="0"/>
+        </xpath>
+        <xpath expr="//table/tbody/t/tr/t/td[@name='account_invoice_line_name']" position="before">
+            <td class="text-center" name="td_ar_no">
+                <t t-set="ar_no" t-value="ar_no + 1"/>
+                <t t-esc="ar_no"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

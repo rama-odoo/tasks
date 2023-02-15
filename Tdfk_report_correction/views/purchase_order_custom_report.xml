@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="purchase_order_custom_report_rama" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//thead//tr/th[@name='th_description']" position="before">
+            <th name="th_pr_no" class="text-center">Sr no</th>
+        </xpath>
+        <xpath expr="//table[hasclass('table','table-sm','o_main_table')]//tbody/t[@t-set='current_subtotal']"
+               position="after">
+            <t t-set="pr_no" t-value="0"/>
+        </xpath>
+        <xpath expr="//tbody//td[@id='product']" position="before">
+            <td class="text-center" name="td_pr_no">
+                <t t-set="pr_no" t-value="pr_no +1"/>
+                <t t-esc="pr_no"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

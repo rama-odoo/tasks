@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="picking_custom_report_rama" inherit_id="stock.report_picking">
+        <xpath expr="//thead//tr/th[@name='th_product']" position="before">
+            <th name="th_sr_number" class="text-center">Sr no</th>
+        </xpath>
+        <xpath expr="//tbody//t[@t-foreach='o.move_line_ids_without_package']//tr//td" position="before">
+            <td class="text-center">
+                <span t-esc="str(ml_index+1)"/>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="delivery_slip_custom_report_rama" inherit_id="stock.report_delivery_document">
+        <xpath expr="//thead//tr/th[@name='th_sm_product']" position="before">
+            <th name="th_sr_number" class="text-center">Sr no</th>
+        </xpath>
+        <xpath expr="//tbody//tr[@t-foreach='lines']//td" position="before">
+            <td class="text-center">
+                <span t-esc="str(move_index+1)"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>
