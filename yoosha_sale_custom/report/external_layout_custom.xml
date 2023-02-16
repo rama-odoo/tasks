@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_standard_inherit" primary="True" inherit_id="web.external_layout_standard">
+        <xpath expr="//div" position="replace">
+            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                <div class="row">
+                    <div class="col-7 mt-5">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 70px;" alt="Logo"/>
+                    </div>
+                    <div class="col-5">
+                        <h4 t-field="company.name"/>
+                        <div t-field="doc.user_id.property_warehouse_id.partner_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')"/>
+                        <div>Tel :<span t-field="doc.user_id.property_warehouse_id.partner_id.phone"/></div>
+                        <div>Email :<span t-field="doc.user_id.property_warehouse_id.partner_id.email"/></div>
+                        <div>Website :<span t-field="doc.user_id.property_warehouse_id.partner_id.website"/></div>
+                        <div>
+                            <strong>GSTIN :<span t-field="company.vat"/></strong>
+                        </div>
+                        <div>
+                            <strong>CIN :<span t-field="company.company_registry"/></strong>
+                        </div>
+                        <h4 style="color:red">
+                            <strong t-if="proforma_report">Pro-Forma Invoice</strong>
+                            <strong t-elif="doc.state in ['draft','sent']">Quotation</strong>
+                            <strong t-else="">Order</strong>
+                            <div><strong t-field="doc.name"/></div>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('pt-5')]" position="replace"/>
+        <xpath expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']" position="replace"/>
+    </template>
+
+    <template id="custom_external_layout" primary="True" inherit_id="web.external_layout">
+        <xpath expr="//t[@t-call='{{company.external_report_layout_id.sudo().key}}']" position="replace"/>
+
+        <xpath expr="//t[@t-call='web.external_layout_standard']" position="replace">
+            <t t-call="yoosha_sale_custom.external_layout_standard_inherit">
+                <t t-out="0"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>

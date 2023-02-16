@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="field_yoosha_sale_custom_x_note" model="ir.model.fields">
+        <field name="name">x_note</field>
+        <field name="field_description">Note</field>
+        <field name="ttype">text</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+    </record>
+
+    <record id="field_yoosha_sale_custom_x_shipping_terms" model="ir.model.fields">
+        <field name="name">x_shipping_terms</field>
+        <field name="field_description">Shipping terms</field>
+        <field name="ttype">char</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+    </record>
+</odoo>
