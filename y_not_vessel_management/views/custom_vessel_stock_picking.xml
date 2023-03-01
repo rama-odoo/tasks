@@ -1,78 +1,58 @@
 <?xml version="1.0"?>
 <odoo>
-<!--    <record id="stock_picking_view_vessel_management" model="ir.ui.view">-->
-<!--        <field name="name">view.picking.test</field>-->
-<!--        <field name="model">stock.picking</field>-->
+    <record id="sale_order" model="ir.ui.view">
+        <field name="name">stock.picking.view.vessel.management</field>
+        <field name="model">sale.order</field>
 <!--        <field name="inherit_id" ref="studio_customization.odoo_studio_stock_pi_66e96c16-c3db-464f-b673-36af409729df"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <xpath expr="//field[@name='origin']" position="after">-->
-<!--                <field name="x_studio_vessel" readonly="0"/>-->
-<!--            </xpath>-->
-<!--        </field>-->
-<!--    </record>-->
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="customer_field" string="vessel"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="stock_picking_view_vessel_management" model="ir.ui.view">
+        <field name="name">stock.picking.view.vessel.management</field>
+        <field name="model">stock.picking</field>
+<!--        <field name="inherit_id" ref="studio_customization.odoo_studio_stock_pi_66e96c16-c3db-464f-b673-36af409729df"/>-->
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="customer_field" string="vessel" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
+            </xpath>
+        </field>
+    </record>
 
     <record id="pivot_views_vessel_management" model="ir.ui.view">
-        <field name="name">delivery.vessel.order</field>
-        <field name="model">stock.picking</field>
-        <field name="priority" eval="3"/>
+        <field name="name">pivot.views.vessel.management</field>
+        <field name="model">stock.move</field>
         <field name="arch" type="xml">
-            <pivot string="Delivery By Vessel">
-                <field name="currency_id" type="col"/>
-                <field name="coupon_program_id"/>
-                <field name="project_id"/>
-                <field name="task_id"/>
-                <field name="is_service"/>
-                <field name="is_delivery"/>
-                <field name="is_reward_line"/>
-                <field name="is_downpayment"/>
-                <field name="is_expense"/>
-                <field name="item_no"/>
-                <field name="linked_line_id"/>
-                <field name="invoice_status"/>
-                <field name="display_type"/>
-                <field name="product_id" type="row"/>
-                <field name="qty_delivered_method"/>
-                <field name="order_id"/>
-                <field name="order_type"/>
-                <field name="po_no_customer_po"/>
-                <field name="product_packaging"/>
-                <field name="route_id"/>
-                <field name="salesman_id"/>
-                <field name="sequence"/>
-<!--                <field name="x_studio_vessel" type="row"/>-->
-                <field name="ship_date"/>
-                <field name="product_uom"/>
-                <field name="product_uom_qty" type="measure"/>
-                <field name="quantity_done" type="measure"/>
-            </pivot>
+            <pivot string="Delivery By Vessel"/>
         </field>
     </record>
 
     <record id="action_delivery_vessel_management" model="ir.actions.act_window">
         <field name="name">Delivery By Vessel</field>
-        <field name="res_model">stock.picking</field>
+        <field name="res_model">stock.move</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_mode">pivot</field>
         <field name="search_view_id" ref="pivot_views_vessel_management"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No transfer found. Let's create one!
-            </p>
-            <p>
-                Transfers allow you to move products from one location to another.
+                No Vessel found. Let's create one!
             </p>
         </field>
     </record>
 
 
-    <menuitem id="stock_picking_menu"
-              name="Custom Report"
-              parent="stock.menu_stock_root" sequence="6"/>
+        <menuitem id="stock_picking_menu"
+                  name="Custom Report"
+                  parent="stock.menu_stock_root" sequence="6"/>
 
     <menuitem id="menu_customer_details"
               name="Delivery By Vessel"
               parent="stock_picking_menu"
               action="action_delivery_vessel_management"
-              sequence="0"/>
+              sequence="4"/>
 
 </odoo>

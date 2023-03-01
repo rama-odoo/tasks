@@ -7,11 +7,11 @@
     'author': 'Odoo India',
     'description': """
         -Task ID - 3122387
-        Create a new menu and pivot view for "Delivery by vessel" and remove readonly field on 'Transfer' and write a python code to fetch vessel from sale order when picking are created and transfer has no backorder.
+        Create a new menu and pivot view for "Delivery by vessel" and remove readonly field on 'Transfer'.
     """,
     'category': 'Development',
     'summary': 'Y Not Vessel Management',
-    'depends': ['sale_management', 'account', 'stock'],
+    'depends': ['stock','sale_management'],
     'data': [
         'views/custom_vessel_stock_picking.xml',
     ],
